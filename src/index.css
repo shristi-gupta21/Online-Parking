@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --headerHeight: 4rem;
+  --screenBodyHeightLG: calc(100vh - 4rem);
+  --screenBodyHeightSM: calc(100vh - 3.5rem);
+  --heightSM: 2rem;
+  --heightMD: 2.5rem;
+  --background-Color: rgb(231, 157, 73);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1rem;
+  line-height: 1.5;
+  /* color: var(--grayDColor); */
+}
+
+/* ONE TIME USE IN APP COMPONENT */
+.baseBlockCntnr {
+  display: block;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  color: var(--fontColor);
+  background-color: var(--baseColor);
+  position: relative;
+}
+.bodyMain {
+  padding-top: 4rem;
+  height: calc(100% - 4rem);
+}
+
+/* UTILITY CLASSES */
+.flexRow {
+  display: flex;
+  flex: none;
+  width: 100%;
+}
+.flexCol {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: 100%;
+}
+.flexInline {
+  display: inline-flex;
+  flex: none;
+}
+.flexInlineCol {
+  display: inline-flex;
+  flex: none;
+  flex-direction: column;
+}
+.flexWrap {
+  display: flex;
+  flex: none;
+  width: 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.flexMinWidthRow {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+.flexMinWidthCol {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+}
+.flexAuto {
+  display: flex;
+  flex: none;
+  min-width: 24px;
+}
+.flexAutoCol {
+  display: flex;
+  flex: none;
+  min-width: 24px;
+  flex-direction: column;
+}
+.flexMinHeight {
+  display: flex;
+  min-height: 0;
+  width: 100%;
+  flex: 1;
+}
+
+.relative {
+  position: relative;
+}
+
+/* PADDING ALL SIDES */
+.pdngXXS {
+  padding: 0.25rem;
+}
+.pdngXS {
+  padding: 0.5rem;
+}
+.pdngSM {
+  padding: 0.75rem;
+}
+.pdngMD {
+  padding: 1rem;
+}
+.pdngLG {
+  padding: 1.5rem;
+}
+
+/* PADDING HORIZONTAL */
+
+.pdngHXS {
+  padding: 0 0.25rem;
+}
+
+.pdngHSM {
+  padding: 0 0.5rem;
+}
+.pdngHMD {
+  padding: 0 1rem;
+}
+
+.pdngVXS {
+  padding: 0.25rem 0;
+}
+.pdngVSM {
+  padding: 0.5rem 0;
+}
+.pdngVLG {
+  padding: 0.75rem 0;
+}
+
+.pdngVXL {
+  padding: 1rem 0;
+}
+
+.pdngLSM {
+  padding-left: 0.5rem;
+}
+.pdngLLG {
+  padding-left: 0.75rem;
+}
+.pdngRLG {
+  padding-right: 0.75rem;
+}
+/* MARGINS ALL SIDES */
+.mrgnVLG {
+  margin: 1rem 0;
+}
+
+.mrgnXXS {
+  margin: 0.25rem;
+}
+.mrgnXS {
+  margin: 0.5rem;
+}
+.mrgnSM {
+  margin: 0.75rem;
+}
+.mrgnMD {
+  margin: 1rem;
+}
+.mrgnLG {
+  margin: 1.5rem;
+}
+.mrgnVXXL {
+  margin: 3rem 0;
+}
+.mrgnRXXS {
+  margin-right: 0.5rem;
+}
+.mrgnTXXS {
+  margin-top: 0.5rem;
+}
+.mrgnTXS {
+  margin-top: 0.75rem;
+}
+
+.mrgnHXXS {
+  margin-top: 0.25rem;
+}
+/* ALIGNMENTS */
+.alignCntr {
+  align-items: center;
+}
+.alignEnd {
+  align-items: flex-end;
+}
+.justifyCntr {
+  justify-content: center;
+}
+.justifyEnd {
+  justify-content: flex-end;
+}
+.textCntr {
+  text-align: center;
+}
+.textRight {
+  text-align: right;
+}
+.justifyBtwn {
+  justify-content: space-between;
+}
+
+.justifyAround {
+  justify-content: space-around;
+}
+
+.brdrRadiusXSM {
+  border-radius: 0.25rem;
+}
+
+.brdrBlackSM {
+  border: 1px solid var(--brdrBlackColor);
+}
+
+.header {
+  height: 4.8rem;
+  background-color: var(--background-Color);
+}
+
+.bold600 {
+  font-weight: 600;
+}
+
+.sideBar {
+  width: 20%;
+  border: 1px solid var(--background-Color);
+}
