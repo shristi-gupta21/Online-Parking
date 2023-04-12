@@ -247,6 +247,6 @@ body {
 }
 
 .sideBar {
-  width: 20%;
+  width: 370px;
   border: 1px solid var(--background-Color);
 }
