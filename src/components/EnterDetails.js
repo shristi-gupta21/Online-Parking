@@ -121,8 +121,8 @@ const EnterDetails = () => {
       data.color !== "" &&
       data.slotNumber !== ""
     ) {
-      const regexName = /^[A-Za-z][A-Za-z0-9_]{4,29}$/;
-      const regexReg = /^[A-Z]{2}[-]{1}[0-9]{2}[-]{1}[A-Z]{2}[-][0-9]{4}$/g;
+      const regexName =  /^[a-zA-Z\s]{4,29}$/;
+      const regexReg = /^[a-zA-Z]{2}[-]{1}[0-9]{2}[-]{1}[a-zA-Z]{2}[-][0-9]{4}$/gi;
       const regexColor = /^[A-Za-z]+$/;
       const regexSlotNumber = /^[1-9][0-9]*$/;
       if (!regexName.test(data.name)) {
