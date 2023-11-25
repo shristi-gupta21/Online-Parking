@@ -17,7 +17,6 @@ function App() {
             <GenerateSlot />
           </div>
         </div>
-        <Body />
       </div>
     </div>
   );
