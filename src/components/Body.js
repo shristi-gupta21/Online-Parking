@@ -66,7 +66,7 @@ const Body = () => {
           <th>SL_Name</th>
           <th>Owner_Name</th>
           <th>Registration_Number</th>
-          <th>Car/Bike Colour</th>
+          <th>Car/Bike Color</th>
           <th>Remove/Update</th>
         </tr>
         {searchObj && searchObj["fetch"]
@@ -103,11 +103,11 @@ const Body = () => {
               </tr>
             ))
           : userData?.map((item, index) => (
-              <tr>
+              <tr className=" text-center">
                 <td>{item.slotNumber}</td>
                 <td>{item.name}</td>
                 <td>{item.regNumber.toUpperCase()}</td>
-                <td>
+                <td className="flex">
                   {item.vehicle}
                   {item.vehicle === "Bike" ? (
                     item.color === "white" ? (
@@ -121,7 +121,7 @@ const Body = () => {
                     <AiFillCar color={item.color} />
                   )}
                 </td>
-                <td>
+                <td className="flex">
                   <AiOutlineDelete
                     className="cursor-pointer"
                     onClick={() => onClickRemoveData(index)}
