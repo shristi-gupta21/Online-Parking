@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, totalSlot } from "../features/GenerateSlices";
 import { UserData } from "../features/UserSlices";
-import "./GenerateSlot.css";
 
 const GenerateSlot = () => {
   const dispatch = useDispatch();
@@ -29,13 +28,13 @@ const GenerateSlot = () => {
     setEnterSlot(formattedNumber);
   };
   return (
-    <div className="flexCol pdngLG generateSlot">
+    <div className="flex flex-col p-6 h-fit bg-yellow-600">
       <form
         action=""
         className="flexMinWidthCol "
         onSubmit={(e) => onClickGenerate(e)}
       >
-        <div className="flexRow justifyCntr mrgnVLG ">
+        <div className="flex justify-center py-6 ">
           <label htmlFor="">Generate Slots:</label>
           <input
             pattern="[0-9.]+"
@@ -45,21 +44,21 @@ const GenerateSlot = () => {
           />
         </div>
         <button
-          className="mrgnVLG pdngVXS"
+          className="py-6 "
           type="submit"
           disabled={enterSlot === ""}
         >
           Generate
         </button>
-        <div div className="flexRow  justifyCntr mrgnVLG">
+        <div div className="flex justify-center py-6">
           <label htmlFor="">Available Slots: </label>
           <input type="text" value={totalSlotsAvailable - userData.length} />
         </div>
-        <div div className="flexRow mrgnVLG justifyCntr">
+        <div div className="flex  py-6 justify-center">
           <label htmlFor="">Alloted Slots: </label>
           <input type="text" value={userData.length || 0} />
         </div>
-        <div div className="flexRow mrgnVLG justifyCntr">
+        <div div className="flex  py-6 justify-center">
           <label htmlFor="">Total Slots: </label>
           <input type="text" value={totalSlotsAvailable || 0} />
         </div>

@@ -7,7 +7,6 @@ import {
   UpdateUsers,
   UserData,
 } from "../features/UserSlices";
-import "./Body.css";
 import { useEffect } from "react";
 import { RiEBike2Fill, RiEBike2Line } from "react-icons/ri";
 import {
@@ -40,7 +39,7 @@ const Body = () => {
     dispatch(addSlot({ slots: slotsData.slots + 1 }));
   };
 
-  const onClickUpdateeData = (i) => {
+  const onClickUpdateData = (i) => {
     dispatch(updateUser({ index: i }));
   };
 
@@ -61,7 +60,7 @@ const Body = () => {
   };
 
   return (
-    <div className="flexCol body">
+    <div className="flex flex-col w-4/5">
       <table>
         <tr>
           <th>SL_Name</th>
@@ -92,13 +91,13 @@ const Body = () => {
                 </td>
                 <td>
                   <AiOutlineDelete
-                    className="pointer"
+                    className="cursor-pointer "
                     onClick={() => onClickRemoveData(index)}
                   />
                   /
                   <AiOutlineForm
-                    className="pointer"
-                    onClick={() => onClickUpdateeData(index)}
+                    className="cursor-pointer"
+                    onClick={() => onClickUpdateData(index)}
                   />
                 </td>
               </tr>
@@ -124,13 +123,13 @@ const Body = () => {
                 </td>
                 <td>
                   <AiOutlineDelete
-                    className="pointer"
+                    className="cursor-pointer"
                     onClick={() => onClickRemoveData(index)}
                   />
                   /
                   <AiOutlineForm
-                    className="pointer"
-                    onClick={() => onClickUpdateeData(index)}
+                    className="cursor-pointer"
+                    onClick={() => onClickUpdateData(index)}
                   />
                 </td>
               </tr>

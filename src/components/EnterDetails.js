@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, TotalSlots } from "../features/GenerateSlices";
-
+import '../index.css'
 import {
   addNewUpdatedData,
   addUser,
@@ -9,7 +9,6 @@ import {
   UpdateUsers,
   UserData,
 } from "../features/UserSlices";
-import "./EnterDetails.css";
 import { v1 } from "uuid";
 
 const EnterDetails = () => {
@@ -121,8 +120,9 @@ const EnterDetails = () => {
       data.color !== "" &&
       data.slotNumber !== ""
     ) {
-      const regexName =  /^[a-zA-Z\s]{4,29}$/;
-      const regexReg = /^[a-zA-Z]{2}[-]{1}[0-9]{2}[-]{1}[a-zA-Z]{2}[-][0-9]{4}$/gi;
+      const regexName = /^[a-zA-Z\s]{4,29}$/;
+      const regexReg =
+        /^[a-zA-Z]{2}[-]{1}[0-9]{2}[-]{1}[a-zA-Z]{2}[-][0-9]{4}$/gi;
       const regexColor = /^[A-Za-z]+$/;
       const regexSlotNumber = /^[1-9][0-9]*$/;
       if (!regexName.test(data.name)) {
@@ -277,9 +277,9 @@ const EnterDetails = () => {
   return (
     <form
       onSubmit={(e) => (updateUserData === null ? onSubmitData(e) : update(e))}
-      className="flexCol pdngLG enterdetails enterDetailInput"
+      className="flex flex-col p-6 "
     >
-      <div className="pdngVSM">
+      <div className="py-2">
         <input
           type="text"
           id="name"
@@ -287,18 +287,18 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           value={data.name}
         />
-        <div className=" mrgnHXXS tooltip">
-          <span className="bold600">&#x24d8;</span>
+        <div className=" px-1 tooltip ">
+          <span className=" font-semibold">&#x24d8;</span>
           <span className="tooltiptext">Includes alphabets</span>
         </div>
 
         {valid && (
-          <p className={valid?.name === "" ? "noerror" : "error"}>
+          <p className={valid?.name === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["name"]}
           </p>
         )}
       </div>
-      <div className="pdngVSM">
+      <div className="py-2">
         <input
           type="text"
           id="regNumber"
@@ -306,20 +306,20 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           value={data.regNumber}
         />
-        <div className=" mrgnHXXS tooltip">
-          <span className="bold600">&#x24d8;</span>
+        <div className=" px-1 tooltip">
+          <span className="font-semibold">&#x24d8;</span>
           <span className="tooltiptext">
             Registration number should be in the specific format e.g.
             UP80-DL-0987
           </span>
         </div>
         {valid && (
-          <p className={valid?.regNumber === "" ? "noerror" : "error"}>
+          <p className={valid?.regNumber === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["regNumber"]}
           </p>
         )}
       </div>
-      <div className="pdngVSM">
+      <div className="py-2">
         <input
           type="text"
           placeholder="Car/Bike_Colour"
@@ -327,17 +327,17 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           value={data.color}
         />
-        <div className=" mrgnHXXS tooltip">
-          <span className="bold600">&#x24d8;</span>
+        <div className=" px-1 tooltip ">
+          <span className="font-semibold">&#x24d8;</span>
           <span className="tooltiptext">Enter valid color</span>
         </div>
         {valid && (
-          <p className={valid?.color === "" ? "noerror" : "error"}>
+          <p className={valid?.color === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["color"]}
           </p>
         )}
       </div>
-      <div className="pdngVSM">
+      <div className="py-2">
         <input
           type="text"
           id="slotNumber"
@@ -345,17 +345,17 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           value={data.slotNumber}
         />
-        <div className=" mrgnHXXS tooltip">
-          <span className="bold600">&#x24d8;</span>
+        <div className=" px-1 tooltip">
+          <span className="font-semibold">&#x24d8;</span>
           <span className="tooltiptext">Enter any number</span>
         </div>
         {valid && (
-          <p className={valid?.slotNumber === "" ? "noerror" : "error"}>
+          <p className={valid?.slotNumber === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["slotNumber"]}
           </p>
         )}
       </div>
-      <div className="pdngVXL">
+      <div className="py-4">
         <input
           type="radio"
           id="vehicle"
@@ -364,8 +364,7 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           checked={data.vehicle === "Car"}
         />
-        <label className="pdngHXS">Car</label>
-
+        <label className="px-2">Car</label>
         <input
           type="radio"
           id="vehicle"
@@ -374,25 +373,25 @@ const EnterDetails = () => {
           onChange={(e) => onChangeData(e)}
           checked={data.vehicle === "Bike"}
         />
-        <label className="pdngHXS">Bike</label>
+        <label className="px-2">Bike</label>
         {valid && (
-          <p className={valid?.vehicle === "" ? "noerror" : "error"}>
+          <p className={valid?.vehicle === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["vehicle"]}
           </p>
         )}
       </div>
-      <div className="pdngVLG submit-btn">
+      <div className="py-4">
         {updateUserData === null ? (
-          <button type="submit" className="pdngXS">
+          <button type="submit" className="p-2">
             Submit
           </button>
         ) : (
-          <button type="submit" className="pdngXS">
+          <button type="submit" className="p-2">
             Update
           </button>
         )}
         {valid && (
-          <p className={valid?.submit === "" ? "noerror" : "error"}>
+          <p className={valid?.submit === "" ? "hidden" : "text-red-500 text-xs"}>
             {valid["submit"]}
           </p>
         )}

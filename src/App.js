@@ -1,6 +1,5 @@
 import Body from "./components/Body";
 import EnterDetails from "./components/EnterDetails";
-import Footer from "./components/Footer";
 import GenerateSlot from "./components/GenerateSlot";
 import Header from "./components/Header";
 
@@ -19,7 +18,6 @@ function App() {
         </div>
         <Body />
       </div>
-      <Footer />
     </div>
   );
 }
