@@ -17,7 +17,7 @@ const Header = () => {
     }
   };
   return (
-    <div className="flex bg-slate-100">
+    <div className="flex bg-gradient-to-r from-purple-800 to-blue-350">
       <div className="flex flex-1 p-3 ">
         <img
           src={process.env.PUBLIC_URL + "./images/logo.png"}
@@ -26,16 +26,16 @@ const Header = () => {
         />
       </div>
       <div className="flex items-center gap-4 justify-end w-1/5 pr-10">
-        {!clickSearch && <button onClick={()=>setClickSearch(true)}><SearchIcon/></button>}
-        {clickSearch && <div className="flex rounded-lg border border-gray-500">
+        {!clickSearch && <button onClick={()=>setClickSearch(true)}><SearchIcon style={{ color: '#FFFFFF' }}/></button>}
+        {clickSearch && <div className="flex rounded-lg border border-white">
           <input
             type="search"
-            className=" bg-transparent h-1/2 rounded-lg w-80 placeholder:text-sm placeholder:px-2.5 py-2"
+            className=" bg-transparent h-1/2 focus:outline-none text-white px-4 rounded-lg w-80 placeholder:text-sm placeholder:text-white py-2"
             placeholder="Search"
             onChange={(e) => onChangeSearch(e)}
           />
         </div>}
-        <button> <AddIcon/></button>
+        <button> <AddIcon style={{ color: '#FFFFFF' }}/></button>
       </div>
     </div>
   );
