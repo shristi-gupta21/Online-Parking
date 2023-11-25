@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="baseBlockCntnr">
       <Header />
-      <div className="flexRow">
-        <div className="flexCol sideBar">
+      <div className="flex">
+        <div className="flex flex-col sideBar">
           <div className="flexMinWidthCol ">
             <EnterDetails />
           </div>
