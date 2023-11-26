@@ -3,8 +3,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
-
 .tooltip {
   position: relative;
   display: inline-block;
@@ -29,4 +27,8 @@
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+input:focus{
+  outline: none;
 }

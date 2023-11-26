@@ -28,39 +28,40 @@ const GenerateSlot = () => {
     setEnterSlot(formattedNumber);
   };
   return (
-    <div className="flex flex-col p-6 h-fit bg-yellow-600">
-      <form
-        action=""
-        className="flexMinWidthCol "
-        onSubmit={(e) => onClickGenerate(e)}
-      >
-        <div className="flex justify-center py-6 ">
-          <label htmlFor="">Generate Slots:</label>
+    <div className="py-5 px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-lg">
+      <form action="" className="flex flex-col gap-y-4" onSubmit={(e) => onClickGenerate(e)}>
+        <div className="flex items-center gap-4">
+          <label className=" text-white font-medium" htmlFor="">
+            Generate Slots:
+          </label>
           <input
             pattern="[0-9.]+"
             type="text"
             onChange={(e) => onChangeEnterSlot(e)}
             value={enterSlot || ""}
+            className="h-8 bg-white/50 shadow rounded px-4 w-1/2"
           />
         </div>
         <button
-          className="py-6 "
+          className="py-2 bg-white/25 rounded shadow w-full font-medium hover:bg-white/60 cursor-pointer"
           type="submit"
           disabled={enterSlot === ""}
         >
           Generate
         </button>
-        <div div className="flex justify-center py-6">
+        <div className="flex text-white font-medium gap-2 justify-center">
           <label htmlFor="">Available Slots: </label>
-          <input type="text" value={totalSlotsAvailable - userData.length} />
+          <p>{totalSlotsAvailable - userData.length}</p>
         </div>
-        <div div className="flex  py-6 justify-center">
+        <div className="flex text-white font-medium gap-2 justify-center">
           <label htmlFor="">Alloted Slots: </label>
-          <input type="text" value={userData.length || 0} />
+          <p>{userData.length || 0}</p>
         </div>
-        <div div className="flex  py-6 justify-center">
-          <label htmlFor="">Total Slots: </label>
-          <input type="text" value={totalSlotsAvailable || 0} />
+        <div className="flex text-white font-medium gap-2 justify-center">
+          <label className="text-white" htmlFor="">
+            Total Slots:{" "}
+          </label>
+          <p>{totalSlotsAvailable || 0}</p>
         </div>
       </form>
     </div>
