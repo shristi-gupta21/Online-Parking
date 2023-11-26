@@ -1,15 +1,14 @@
-import Body from "./components/Body";
-import EnterDetails from "./components/EnterDetails";
 import GenerateSlot from "./components/GenerateSlot";
 import Header from "./components/Header";
+import SideNavRouter from "./components/SideNavRouter";
 import SideNav from "./components/SideNav";
 
 function App() {
   return (
     <div className="">
-      <Header />
-      <div className="flex h-full">
-        <div className="flex flex-col h-full">
+      <Header/>
+      <div className="flex">
+        <div className="flex flex-col">
           <div className="h-full">
             <SideNav />
           </div>
@@ -17,6 +16,7 @@ function App() {
             <GenerateSlot />
           </div>
         </div>
+        <SideNavRouter/>
       </div>
     </div>
   );
