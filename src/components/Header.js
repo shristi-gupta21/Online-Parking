@@ -19,10 +19,6 @@ const Header = () => {
     }
   };
   const onClickAdd = () => {
-    if (openAdd) {
-      const addModal = document.querySelector("#add-modal");
-      addModal.style.display = "block";
-    }
     setOpenAdd(true);
   };
   return (
