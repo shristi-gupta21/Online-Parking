@@ -11,9 +11,9 @@
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: rgb(194, 189, 189);
-  color: black;
+  width: 10rem;
+  background: black;
+  color: white;
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
@@ -21,8 +21,8 @@
   /* Pos  ition the tooltip */
   position: absolute;
   z-index: 1;
-  top: -5px;
-  right: 105%;
+  top: 0.625rem;
+  left: 100%;
 }
 
 .tooltip:hover .tooltiptext {
@@ -31,4 +31,7 @@
 
 input:focus{
   outline: none;
+}
+input{
+  background: transparent;
 }

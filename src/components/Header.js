@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { searchUser } from "../features/UserSlices";
-import AddIcon from '@mui/icons-material/Add';
-import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from "@mui/icons-material/Add";
+import SearchIcon from "@mui/icons-material/Search";
 import { useState } from "react";
+import EnterDetails from "./EnterDetails";
 const Header = () => {
-  const [clickSearch, setClickSearch] = useState(false)
+  const [clickSearch, setClickSearch] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
   const dispatch = useDispatch();
   const onChangeSearch = (e) => {
     console.log(e.target.value);
@@ -15,6 +17,13 @@ const Header = () => {
       let searchText = e.target.value;
       dispatch(searchUser(searchText));
     }
+  };
+  const onClickAdd = () => {
+    if (openAdd) {
+      const addModal = document.querySelector("#add-modal");
+      addModal.style.display = "block";
+    }
+    setOpenAdd(true);
   };
   return (
     <div className="flex bg-gradient-to-r from-purple-800 to-blue-350">
@@ -26,16 +35,25 @@ const Header = () => {
         />
       </div>
       <div className="flex items-center gap-4 justify-end w-1/5 pr-10">
-        {!clickSearch && <button onClick={()=>setClickSearch(true)}><SearchIcon style={{ color: '#FFFFFF' }}/></button>}
-        {clickSearch && <div className="flex rounded-lg border border-white">
-          <input
-            type="search"
-            className=" bg-transparent h-1/2 focus:outline-none text-white px-4 rounded-lg w-80 placeholder:text-sm placeholder:text-white py-2"
-            placeholder="Search"
-            onChange={(e) => onChangeSearch(e)}
-          />
-        </div>}
-        <button> <AddIcon style={{ color: '#FFFFFF' }}/></button>
+        {!clickSearch && (
+          <button onClick={() => setClickSearch(true)}>
+            <SearchIcon style={{ color: "#FFFFFF" }} />
+          </button>
+        )}
+        {clickSearch && (
+          <div className="flex rounded-lg border border-white">
+            <input
+              type="search"
+              className=" bg-transparent h-1/2 focus:outline-none text-white px-4 rounded-lg w-80 placeholder:text-sm placeholder:text-white py-2"
+              placeholder="Search"
+              onChange={(e) => onChangeSearch(e)}
+            />
+          </div>
+        )}
+        <button onClick={onClickAdd}>
+          <AddIcon style={{ color: "#FFFFFF" }} />
+        </button>
+        {openAdd && <EnterDetails />}
       </div>
     </div>
   );
