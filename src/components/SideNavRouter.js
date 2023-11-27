@@ -6,7 +6,7 @@ import CarParking from "./CarParking";
 const SideNavRouter = () => {
   return (
     <Routes>
-      <Route path="/" exact element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
       <Route path="/car-parking" element={<CarParking />} />
     </Routes>
   );
