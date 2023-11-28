@@ -4,7 +4,6 @@ import DirectionsCarFilledIcon from "@mui/icons-material/DirectionsCarFilled";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import GenerateSlot from "./GenerateSlot";
-import {  useSelector } from "react-redux";
 
 const SideNav = () => {
   const [page, setPage] = useState("dashboard");

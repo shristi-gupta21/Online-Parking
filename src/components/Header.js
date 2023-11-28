@@ -20,6 +20,9 @@ const Header = () => {
   };
   const onClickAdd = () => {
     setOpenAdd(true);
+    if(openAdd){
+      document.querySelector(".add-details").style.display = "block";
+    }
   };
   return (
     <div className="flex bg-gradient-to-r from-purple-800 to-blue-350">

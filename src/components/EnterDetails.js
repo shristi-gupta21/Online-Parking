@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, TotalSlots } from "../features/GenerateSlices";
 import "../index.css";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   addNewUpdatedData,
   addUser,
@@ -275,174 +276,184 @@ const EnterDetails = () => {
     }
   };
 
+  const close = () =>{
+    document.querySelector(".add-details").style.display = "none";
+  }
   return (
-    <div className="top-16 absolute right-0 bg-blue-600/50 rounded-xl ">
+    <div className="z-10 add-details top-16 absolute right-0 bg-blue-3+00 rounded-xl ">
       <form
         action=""
         onSubmit={(e) =>
           updateUserData === null ? onSubmitData(e) : update(e)
         }
-        className="flex flex-col gap-5 p-6 items-center"
+        className="flex p-4 items-start"
       >
-        {updateUserData === null ? (
-          <p className="font-semibold uppercase text-xl pb-4 underline">
-            Add Details
-          </p>
-        ) : (
-          <p className="font-semibold uppercase text-xl pb-4 underline">
-            Update Details
-          </p>
-        )}
-        <div>
-          <div className="">
+        <div  className="flex flex-col gap-5 items-center">
+          {updateUserData === null ? (
+            <p className="font-semibold uppercase text-xl pb-4 underline">
+              Add Details
+            </p>
+          ) : (
+            <p className="font-semibold uppercase text-xl pb-4 underline">
+              Update Details
+            </p>
+          )}
+          <div>
+            <div className="">
+              <input
+                type="text"
+                id="name"
+                placeholder="Owner name"
+                onChange={(e) => onChangeData(e)}
+                value={data.name}
+                className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+              />
+              <div className="px-5 tooltip ">
+                <span className=" font-semibold text-gray-600">&#x24d8;</span>
+                <span className="tooltiptext">Includes alphabets</span>
+              </div>
+            </div>
+
+            {valid && (
+              <p
+                className={
+                  valid?.name === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["name"]}
+              </p>
+            )}
+          </div>
+          <div>
             <input
               type="text"
-              id="name"
-              placeholder="Owner name"
+              id="regNumber"
+              placeholder="Registration number"
               onChange={(e) => onChangeData(e)}
-              value={data.name}
+              value={data.regNumber}
+              className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+            />
+            <div className="px-5 tooltip">
+              <span className="font-semibold text-gray-600">&#x24d8;</span>
+              <span className="tooltiptext">
+                Registration number should be in the specific format e.g.
+                UP80-DL-0987
+              </span>
+            </div>
+            {valid && (
+              <p
+                className={
+                  valid?.regNumber === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["regNumber"]}
+              </p>
+            )}
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Car/Bike color"
+              id="color"
+              onChange={(e) => onChangeData(e)}
+              value={data.color}
               className=" border-b placeholder:text-gray-700 placeholder:text-sm"
             />
             <div className="px-5 tooltip ">
-              <span className=" font-semibold text-gray-600">&#x24d8;</span>
-              <span className="tooltiptext">Includes alphabets</span>
+              <span className="font-semibold text-gray-600">&#x24d8;</span>
+              <span className="tooltiptext px-2">Enter valid color</span>
             </div>
+            {valid && (
+              <p
+                className={
+                  valid?.color === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["color"]}
+              </p>
+            )}
           </div>
-
-          {valid && (
-            <p
-              className={valid?.name === "" ? "hidden" : "text-red-500 text-xs"}
-            >
-              {valid["name"]}
-            </p>
-          )}
-        </div>
-        <div>
-          <input
-            type="text"
-            id="regNumber"
-            placeholder="Registration number"
-            onChange={(e) => onChangeData(e)}
-            value={data.regNumber}
-            className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-          />
-          <div className="px-5 tooltip">
-            <span className="font-semibold text-gray-600">&#x24d8;</span>
-            <span className="tooltiptext">
-              Registration number should be in the specific format e.g.
-              UP80-DL-0987
-            </span>
-          </div>
-          {valid && (
-            <p
-              className={
-                valid?.regNumber === "" ? "hidden" : "text-red-500 text-xs"
-              }
-            >
-              {valid["regNumber"]}
-            </p>
-          )}
-        </div>
-        <div>
-          <input
-            type="text"
-            placeholder="Car/Bike color"
-            id="color"
-            onChange={(e) => onChangeData(e)}
-            value={data.color}
-            className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-          />
-          <div className="px-5 tooltip ">
-            <span className="font-semibold text-gray-600">&#x24d8;</span>
-            <span className="tooltiptext px-2">Enter valid color</span>
-          </div>
-          {valid && (
-            <p
-              className={
-                valid?.color === "" ? "hidden" : "text-red-500 text-xs"
-              }
-            >
-              {valid["color"]}
-            </p>
-          )}
-        </div>
-        <div>
-          <input
-            type="text"
-            id="slotNumber"
-            placeholder="Slot number"
-            onChange={(e) => onChangeData(e)}
-            value={data.slotNumber}
-            className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-          />
-          <div className="px-5 tooltip">
-            <span className="font-semibold text-gray-600">&#x24d8;</span>
-            <span className="tooltiptext">Enter any number</span>
-          </div>
-          {valid && (
-            <p
-              className={
-                valid?.slotNumber === "" ? "hidden" : "text-red-500 text-xs"
-              }
-            >
-              {valid["slotNumber"]}
-            </p>
-          )}
-        </div>
-        <div className="w-1/2">
-          <div className="flex justify-around">
-            <div>
-              <input
-                type="radio"
-                id="vehicle"
-                name="vehicle"
-                value="Car"
-                onChange={(e) => onChangeData(e)}
-                checked={data.vehicle === "Car"}
-                className=" scale-105"
-              />
-              <label className="px-2 uppercase">Car</label>
+          <div>
+            <input
+              type="text"
+              id="slotNumber"
+              placeholder="Slot number"
+              onChange={(e) => onChangeData(e)}
+              value={data.slotNumber}
+              className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+            />
+            <div className="px-5 tooltip">
+              <span className="font-semibold text-gray-600">&#x24d8;</span>
+              <span className="tooltiptext">Enter any number</span>
             </div>
-            <div>
-              <input
-                type="radio"
-                id="vehicle"
-                name="vehicle"
-                value="Bike"
-                onChange={(e) => onChangeData(e)}
-                checked={data.vehicle === "Bike"}
-                className=" scale-105"
-              />
-              <label className="px-2 uppercase">Bike</label>
-            </div>
+            {valid && (
+              <p
+                className={
+                  valid?.slotNumber === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["slotNumber"]}
+              </p>
+            )}
           </div>
-          {valid && (
-            <p
-              className={
-                valid?.vehicle === "" ? "hidden" : "text-red-500 text-xs"
-              }
+          <div className="w-1/2">
+            <div className="flex justify-around">
+              <div>
+                <input
+                  type="radio"
+                  id="vehicle"
+                  name="vehicle"
+                  value="Car"
+                  onChange={(e) => onChangeData(e)}
+                  checked={data.vehicle === "Car"}
+                  className=" scale-105"
+                />
+                <label className="px-2 uppercase">Car</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="vehicle"
+                  name="vehicle"
+                  value="Bike"
+                  onChange={(e) => onChangeData(e)}
+                  checked={data.vehicle === "Bike"}
+                  className=" scale-105"
+                />
+                <label className="px-2 uppercase">Bike</label>
+              </div>
+            </div>
+            {valid && (
+              <p
+                className={
+                  valid?.vehicle === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["vehicle"]}
+              </p>
+            )}
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="py-1 disabled:bg-red-500 px-10 text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
             >
-              {valid["vehicle"]}
-            </p>
-          )}
+              {updateUserData === null ? "Add" : "Update"}
+            </button>
+            {valid && (
+              <p
+                className={
+                  valid?.submit === "" ? "hidden" : "text-red-500 text-xs"
+                }
+              >
+                {valid["submit"]}
+              </p>
+            )}
+          </div>
         </div>
-        <div className="pb-4">
-          <button
-            type="submit"
-            className="py-2 disabled:bg-red-500 px-10 text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
-          >
-            {updateUserData === null ? "Add" : "Update"}
-          </button>
-          {valid && (
-            <p
-              className={
-                valid?.submit === "" ? "hidden" : "text-red-500 text-xs"
-              }
-            >
-              {valid["submit"]}
-            </p>
-          )}
-        </div>
+        <button type="button" onClick={close} className="close-btn">
+          <CloseIcon />
+        </button>
       </form>
     </div>
   );
