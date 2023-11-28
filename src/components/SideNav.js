@@ -5,14 +5,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GenerateSlot from "./GenerateSlot";
 import {  useSelector } from "react-redux";
-import {  SelectedSlot } from "../features/GenerateSlices";
+
 const SideNav = () => {
   const [page, setPage] = useState("dashboard");
-  const slotsData = useSelector(SelectedSlot);
-  console.log(slotsData)
+ 
   return (
     <div className="flex flex-col w-2/12 h-full">
-      <div className="flex items-end gap-y-8 pt-8 flex-col font-bold text-xl h-[30rem]">
+      <div className="flex items-end gap-y-8 pt-8 flex-col font-bold text-xl h-[40rem]">
         <Link
           to="/"
           onClick={() => setPage("dashboard")}

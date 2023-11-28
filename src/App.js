@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Header />
-      <div className="flex w-full">
+      <div className="flex gap-16 w-full">
         <SideNav />
         <SideNavRouter />
       </div>

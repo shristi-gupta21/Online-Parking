@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, totalSlot } from "../features/GenerateSlices";
-import { UserData } from "../features/UserSlices";
 
 const GenerateSlot = () => {
   const dispatch = useDispatch();
   const slotsData = useSelector(SelectedSlot);
   const [enterSlot, setEnterSlot] = useState("");
   const [totalSlotsAvailable, setTotalSlotAvailable] = useState(0);
-  const userData = useSelector(UserData);
 
   const onClickGenerate = (e) => {
     e.preventDefault();
@@ -29,7 +27,7 @@ const GenerateSlot = () => {
   };
   return (
     <div className="ml-2 py-5 px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-lg">
-      <form action="" className="flex flex-col gap-y-4" onSubmit={(e) => onClickGenerate(e)}>
+      <form action="" className="flex flex-col gap-y-6" onSubmit={(e) => onClickGenerate(e)}>
         <div className="flex items-center gap-4">
           <label className=" text-white font-medium" htmlFor="">
             Generate Slots:
@@ -49,20 +47,6 @@ const GenerateSlot = () => {
         >
           Generate
         </button>
-        <div className="flex text-white font-medium gap-2 justify-center">
-          <label htmlFor="">Available Slots: </label>
-          <p>{totalSlotsAvailable - userData.length}</p>
-        </div>
-        <div className="flex text-white font-medium gap-2 justify-center">
-          <label htmlFor="">Alloted Slots: </label>
-          <p>{userData.length || 0}</p>
-        </div>
-        <div className="flex text-white font-medium gap-2 justify-center">
-          <label className="text-white" htmlFor="">
-            Total Slots:{" "}
-          </label>
-          <p>{totalSlotsAvailable || 0}</p>
-        </div>
       </form>
     </div>
   );
