@@ -71,11 +71,15 @@ const Slots = ({ slotNumber, onShowDetails }) => {
               ? "Slots are Empty"
               : userData.map((item) =>
                   parseInt(item.slotNumber) === slotNum ? (
-                    <div>
+                    <div >
                       <p>{item.slotNumber}</p>
                       <p>{item.name}</p>
                       <p>{item.regNumber}</p>
                       <p>{item.vehicle}</p>
+                      <div className="flex gap-4">
+                        <button>Remove</button>
+                        <button>Update</button>
+                      </div>
                     </div>
                   ) : (
                     "Empty"
