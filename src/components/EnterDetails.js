@@ -279,8 +279,9 @@ const EnterDetails = () => {
   const close = () =>{
     document.querySelector(".add-details").style.display = "none";
   }
+  
   return (
-    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:right-6 bg-blue-300 shadow-md rounded-xl">
+    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
         action=""
         onSubmit={(e) =>

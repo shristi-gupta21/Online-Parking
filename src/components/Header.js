@@ -49,8 +49,8 @@ const Header = () => {
             />
           </div>
         )}
-        <button onClick={onClickAdd}>
-          <AddIcon style={{ color: "#FFFFFF" }} />
+        <button id="add-btn" onClick={onClickAdd}>
+          <AddIcon  style={{ color: "#FFFFFF" }} />
         </button>
         {openAdd && <EnterDetails />}
       </div>

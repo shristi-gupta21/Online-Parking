@@ -57,10 +57,10 @@ const Slots = ({ slotNumber, onShowDetails }) => {
 
   return (
     <div>
-      <h1 className="text-center py-4 font-semibold text-xl uppercase">
+      <h1 className="text-center py-4 font-semibold w-full text-xl uppercase">
         Slots
       </h1>
-      <div className="flex gap-2 flex-wrap">
+      <div className="flex gap-2 flex-wrap justify-center ">
         {slotNumbersArray.map((slotNum) => (
           <div
             key={slotNum}

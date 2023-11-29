@@ -26,7 +26,7 @@ const GenerateSlot = () => {
     setEnterSlot(formattedNumber);
   };
   return (
-    <div className="mt-4 md:mt-0 md:ml-2 p-3 md:py-5 md:px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-md md:rounded-lg">
+    <div className="md:w-80 mt-4 md:mt-0 md:ml-2 p-3 md:py-5 md:px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-md md:rounded-lg">
       <form action="" className="flex flex-col gap-y-2 md:gap-y-6" onSubmit={(e) => onClickGenerate(e)}>
         <div className="flex items-center gap-1 md:gap-4">
           <label className=" text-sm md:text-base text-white font-medium" htmlFor="">

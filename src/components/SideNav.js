@@ -16,8 +16,8 @@ const SideNav = () => {
           onClick={() => setPage("dashboard")}
           className={`${
             page === "dashboard"
-              ? "w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 md:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
-              : "w-full text-black bg-none"
+              ? "md:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 md:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
+              : "md:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DashboardIcon />
@@ -29,8 +29,8 @@ const SideNav = () => {
           className={`       
           ${
             page === "car-parking"
-              ? " w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow md:translate-x-4 p-2 md:px-4 md:py-3"
-              : "w-full text-black bg-none"
+              ? "md:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow md:translate-x-4 p-2 md:px-4 md:py-3"
+              : "md:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DirectionsCarFilledIcon />

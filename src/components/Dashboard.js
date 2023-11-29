@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 const Dashboard = () => {
   const userData = useSelector(UserData);
   const slotsData = useSelector(SelectedSlot);
-  console.log(slotsData);
   return (
     <div className="md:w-4/5">
       <div className="grid md:grid-cols-2 md:w-4/5 gap-6 pt-4 md:pt-8 ">
