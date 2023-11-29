@@ -26,10 +26,10 @@ const GenerateSlot = () => {
     setEnterSlot(formattedNumber);
   };
   return (
-    <div className="ml-2 py-5 px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-lg">
-      <form action="" className="flex flex-col gap-y-6" onSubmit={(e) => onClickGenerate(e)}>
-        <div className="flex items-center gap-4">
-          <label className=" text-white font-medium" htmlFor="">
+    <div className="mt-4 md:mt-0 md:ml-2 p-3 md:py-5 md:px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-md md:rounded-lg">
+      <form action="" className="flex flex-col gap-y-2 md:gap-y-6" onSubmit={(e) => onClickGenerate(e)}>
+        <div className="flex items-center gap-1 md:gap-4">
+          <label className=" text-sm md:text-base text-white font-medium" htmlFor="">
             Generate Slots:
           </label>
           <input
@@ -37,11 +37,11 @@ const GenerateSlot = () => {
             type="text"
             onChange={(e) => onChangeEnterSlot(e)}
             value={enterSlot || ""}
-            className="h-8 bg-white/50 shadow rounded px-4 w-1/2"
+            className="h-8 bg-white/50 shadow rounded px-4 w-2/3 md:w-1/2"
           />
         </div>
         <button
-          className="py-2 bg-white/25 rounded shadow w-full font-medium hover:bg-white/60 cursor-pointer"
+          className=" text-sm md:text-base py-2 bg-white/25 rounded shadow w-full font-medium hover:bg-white/60 cursor-pointer"
           type="submit"
           disabled={enterSlot === ""}
         >

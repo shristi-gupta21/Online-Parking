@@ -9,16 +9,16 @@ const SideNav = () => {
   const [page, setPage] = useState("dashboard");
  
   return (
-    <div className="flex flex-col w-2/12 h-full">
-      <div className="flex items-end gap-y-8 pt-8 flex-col font-bold text-xl h-[40rem]">
+    <div className="flex justify-between w-full flex-col-reverse md:flex-col md:w-1/6 h-full">
+      <div className="flex items-start pt-4 md:items-end gap-x-4 md:gap-x-0 md:gap-y-8 md:pt-8 md:flex-col font-bold md:text-xl md:h-[25rem] xl:h-[30rem] 2xl:h-[40rem]">
         <Link
           to="/"
           onClick={() => setPage("dashboard")}
           className={`${
             page === "dashboard"
-              ? " text-white bg-gradient-to-r from-purple-800 to-blue-350 translate-x-4 shadow rounded px-4 py-3 "
-              : " text-black bg-none"
-          } w-full justify-end uppercase flex items-center gap-3`}
+              ? "w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 md:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
+              : "w-full text-black bg-none"
+          }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DashboardIcon />
           Dashboard
@@ -29,9 +29,9 @@ const SideNav = () => {
           className={`       
           ${
             page === "car-parking"
-              ? " text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow translate-x-4 px-4 py-3"
-              : " text-black bg-none"
-          } w-full justify-end uppercase flex items-center gap-3`}
+              ? " w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow md:translate-x-4 p-2 md:px-4 md:py-3"
+              : "w-full text-black bg-none"
+          }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DirectionsCarFilledIcon />
           Parking Space

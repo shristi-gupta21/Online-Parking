@@ -280,7 +280,7 @@ const EnterDetails = () => {
     document.querySelector(".add-details").style.display = "none";
   }
   return (
-    <div className="z-10 add-details top-16 absolute right-0 bg-blue-3+00 rounded-xl ">
+    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
         action=""
         onSubmit={(e) =>
@@ -288,18 +288,18 @@ const EnterDetails = () => {
         }
         className="flex p-4 items-start"
       >
-        <div  className="flex flex-col gap-5 items-center">
+        <div  className="flex flex-col gap-3 md:gap-5 items-center">
           {updateUserData === null ? (
-            <p className="font-semibold uppercase text-xl pb-4 underline">
+            <p className="font-semibold uppercase md:text-xl md:pb-4 underline">
               Add Details
             </p>
           ) : (
-            <p className="font-semibold uppercase text-xl pb-4 underline">
+            <p className="font-semibold uppercase md:text-xl md:pb-4 underline">
               Update Details
             </p>
           )}
           <div>
-            <div className="">
+            <div className="flex gap-2">
               <input
                 type="text"
                 id="name"
@@ -308,7 +308,7 @@ const EnterDetails = () => {
                 value={data.name}
                 className=" border-b placeholder:text-gray-700 placeholder:text-sm"
               />
-              <div className="px-5 tooltip ">
+              <div className="md:px-5 tooltip ">
                 <span className=" font-semibold text-gray-600">&#x24d8;</span>
                 <span className="tooltiptext">Includes alphabets</span>
               </div>
@@ -324,7 +324,7 @@ const EnterDetails = () => {
               </p>
             )}
           </div>
-          <div>
+          <div className="flex gap-2">
             <input
               type="text"
               id="regNumber"
@@ -333,7 +333,7 @@ const EnterDetails = () => {
               value={data.regNumber}
               className=" border-b placeholder:text-gray-700 placeholder:text-sm"
             />
-            <div className="px-5 tooltip">
+            <div className="md:px-5 tooltip">
               <span className="font-semibold text-gray-600">&#x24d8;</span>
               <span className="tooltiptext">
                 Registration number should be in the specific format e.g.
@@ -350,7 +350,7 @@ const EnterDetails = () => {
               </p>
             )}
           </div>
-          <div>
+          <div className="flex gap-2">
             <input
               type="text"
               placeholder="Car/Bike color"
@@ -359,7 +359,7 @@ const EnterDetails = () => {
               value={data.color}
               className=" border-b placeholder:text-gray-700 placeholder:text-sm"
             />
-            <div className="px-5 tooltip ">
+            <div className="md:px-5 tooltip ">
               <span className="font-semibold text-gray-600">&#x24d8;</span>
               <span className="tooltiptext px-2">Enter valid color</span>
             </div>
@@ -373,7 +373,7 @@ const EnterDetails = () => {
               </p>
             )}
           </div>
-          <div>
+          <div className="flex gap-2">
             <input
               type="text"
               id="slotNumber"
@@ -382,7 +382,7 @@ const EnterDetails = () => {
               value={data.slotNumber}
               className=" border-b placeholder:text-gray-700 placeholder:text-sm"
             />
-            <div className="px-5 tooltip">
+            <div className="md:px-5 tooltip">
               <span className="font-semibold text-gray-600">&#x24d8;</span>
               <span className="tooltiptext">Enter any number</span>
             </div>
@@ -436,7 +436,7 @@ const EnterDetails = () => {
           <div>
             <button
               type="submit"
-              className="py-1 disabled:bg-red-500 px-10 text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
+              className="py-1 disabled:bg-red-500 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
             >
               {updateUserData === null ? "Add" : "Update"}
             </button>
