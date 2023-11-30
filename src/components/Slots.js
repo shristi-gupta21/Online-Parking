@@ -8,6 +8,9 @@ import {
   UserData,
 } from "../features/UserSlices";
 import { addSlot, SelectedSlot } from "../features/GenerateSlices";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import EditIcon from "@mui/icons-material/Edit";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Slots = ({ slotNumber, onShowDetails }) => {
   const userData = useSelector(UserData);
@@ -55,34 +58,41 @@ const Slots = ({ slotNumber, onShowDetails }) => {
     }
   };
 
+
   return (
     <div>
       <h1 className="text-center py-4 font-semibold w-full text-xl uppercase">
         Slots
       </h1>
-      <div className="flex gap-2 flex-wrap justify-center ">
+      <div className="flex gap-2 flex-wrap justify-center md:justify-start">
         {slotNumbersArray.map((slotNum) => (
           <div
             key={slotNum}
             onClick={onShowDetails}
-            className="border p-3 h-fit text-center"
+            className="border rounded p-3 h-fit"
           >
             {userData.length < 1
-              ? "Slots are Empty"
+              ? "Slot is Empty"
               : userData.map((item) =>
                   parseInt(item.slotNumber) === slotNum ? (
-                    <div >
-                      <p>{item.slotNumber}</p>
-                      <p>{item.name}</p>
-                      <p>{item.regNumber}</p>
-                      <p>{item.vehicle}</p>
-                      <div className="flex gap-4">
-                        <button>Remove</button>
-                        <button>Update</button>
+                    <div className="flex  w-full  items-start">
+                      <div className="w-4/5">
+                        <p>Slot {item.slotNumber}</p>
+                        <p>{item.name}</p>
+                        <p>{item.regNumber}</p>
+                        <p>{item.vehicle}</p>
+                      </div>
+                      <div className="flex flex-col w-1/5">
+                        <button className=" text-red-500">
+                          <RemoveCircleIcon />
+                        </button>
+                        <button className="text-gray-700">
+                          <EditIcon />
+                        </button>
                       </div>
                     </div>
                   ) : (
-                    "Empty"
+                    "Slot is Empty"
                   )
                 )}
           </div>
