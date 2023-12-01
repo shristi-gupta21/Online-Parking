@@ -276,10 +276,10 @@ const EnterDetails = () => {
     }
   };
 
-  const close = () =>{
+  const close = () => {
     document.querySelector(".add-details").style.display = "none";
-  }
-  
+  };
+
   return (
     <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
@@ -289,7 +289,7 @@ const EnterDetails = () => {
         }
         className="flex p-4 items-start"
       >
-        <div  className="flex flex-col gap-3 md:gap-5 items-center">
+        <div className="flex flex-col gap-3 md:gap-5 items-center">
           {updateUserData === null ? (
             <p className="font-semibold uppercase md:text-xl md:pb-4 underline">
               Add Details
@@ -318,79 +318,89 @@ const EnterDetails = () => {
             {valid && (
               <p
                 className={
-                  valid?.name === "" ? "hidden" : "text-red-500 text-xs"
+                  valid?.name === "" ? "hidden" : "text-red-500 text-xxs pt-1"
                 }
               >
                 {valid["name"]}
               </p>
             )}
           </div>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              id="regNumber"
-              placeholder="Registration number"
-              onChange={(e) => onChangeData(e)}
-              value={data.regNumber}
-              className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-            />
-            <div className="md:px-5 tooltip">
-              <span className="font-semibold text-gray-600">&#x24d8;</span>
-              <span className="tooltiptext">
-                Registration number should be in the specific format e.g.
-                UP80-DL-0987
-              </span>
+          <div>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                id="regNumber"
+                placeholder="Registration number"
+                onChange={(e) => onChangeData(e)}
+                value={data.regNumber}
+                className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+              />
+              <div className="md:px-5 tooltip">
+                <span className="font-semibold text-gray-600">&#x24d8;</span>
+                <span className="tooltiptext">
+                  Registration number should be in the specific format e.g.
+                  UP80-DL-0987
+                </span>
+              </div>
             </div>
             {valid && (
               <p
                 className={
-                  valid?.regNumber === "" ? "hidden" : "text-red-500 text-xs"
+                  valid?.regNumber === ""
+                    ? "hidden"
+                    : "text-red-500 text-xxs pt-1"
                 }
               >
                 {valid["regNumber"]}
               </p>
             )}
           </div>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              placeholder="Car/Bike color"
-              id="color"
-              onChange={(e) => onChangeData(e)}
-              value={data.color}
-              className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-            />
-            <div className="md:px-5 tooltip ">
-              <span className="font-semibold text-gray-600">&#x24d8;</span>
-              <span className="tooltiptext px-2">Enter valid color</span>
+          <div>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Car/Bike color"
+                id="color"
+                onChange={(e) => onChangeData(e)}
+                value={data.color}
+                className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+              />
+              <div className="md:px-5 tooltip ">
+                <span className="font-semibold text-gray-600">&#x24d8;</span>
+                <span className="tooltiptext px-2">Enter valid color</span>
+              </div>
             </div>
             {valid && (
               <p
                 className={
-                  valid?.color === "" ? "hidden" : "text-red-500 text-xs"
+                  valid?.color === "" ? "hidden" : "text-red-500 text-xxs pt-1"
                 }
               >
                 {valid["color"]}
               </p>
             )}
           </div>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              id="slotNumber"
-              placeholder="Slot number"
-              onChange={(e) => onChangeData(e)}
-              value={data.slotNumber}
-              className=" border-b placeholder:text-gray-700 placeholder:text-sm"
-            />
-            <div className="md:px-5 tooltip">
-              <span className="font-semibold text-gray-600">&#x24d8;</span>
-              <span className="tooltiptext">Enter any number</span>
+          <div>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                id="slotNumber"
+                placeholder="Slot number"
+                onChange={(e) => onChangeData(e)}
+                value={data.slotNumber}
+                className=" border-b placeholder:text-gray-700 placeholder:text-sm"
+              />
+              <div className="md:px-5 tooltip">
+                <span className="font-semibold text-gray-600">&#x24d8;</span>
+                <span className="tooltiptext">Enter any number</span>
+              </div>
             </div>
             {valid && (
               <p
                 className={
-                  valid?.slotNumber === "" ? "hidden" : "text-red-500 text-xs"
+                  valid?.slotNumber === ""
+                    ? "hidden"
+                    : "text-red-500 text-xxs pt-1"
                 }
               >
                 {valid["slotNumber"]}
@@ -437,7 +447,7 @@ const EnterDetails = () => {
           <div>
             <button
               type="submit"
-              className="py-1 disabled:bg-red-500 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
+              className="py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
             >
               {updateUserData === null ? "Add" : "Update"}
             </button>

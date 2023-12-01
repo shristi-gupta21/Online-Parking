@@ -10,7 +10,6 @@ import {
 import { addSlot, SelectedSlot } from "../features/GenerateSlices";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import EditIcon from "@mui/icons-material/Edit";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const Slots = ({ slotNumber, onShowDetails }) => {
   const userData = useSelector(UserData);
@@ -23,7 +22,7 @@ const Slots = ({ slotNumber, onShowDetails }) => {
   const [searchObj, setSearchObj] = useState();
   const dispatch = useDispatch();
   const updateUserData = useSelector(UpdateUsers);
-  console.log("userData", userData);
+  const [addClick, setAddClick] = useState(false);
   useEffect(() => {
     if (searchedData !== "") {
       showSearchedUser(searchedData);
@@ -34,6 +33,7 @@ const Slots = ({ slotNumber, onShowDetails }) => {
 
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
+
     updateUserData !== null && dispatch(updateUser({ index: null }));
     dispatch(addSlot({ slots: slotsData.slots + 1 }));
   };
@@ -57,7 +57,12 @@ const Slots = ({ slotNumber, onShowDetails }) => {
       setSearchObj(d);
     }
   };
-
+  const onClickAdd = () => {
+    setAddClick(true);
+    if(addClick){
+      document.querySelector(".add-details").style.display = "block";
+    }
+  };
 
   return (
     <div>
@@ -71,30 +76,54 @@ const Slots = ({ slotNumber, onShowDetails }) => {
             onClick={onShowDetails}
             className="border rounded p-3 h-fit"
           >
-            {userData.length < 1
-              ? "Slot is Empty"
-              : userData.map((item) =>
-                  parseInt(item.slotNumber) === slotNum ? (
-                    <div className="flex  w-full  items-start">
-                      <div className="w-4/5">
-                        <p>Slot {item.slotNumber}</p>
-                        <p>{item.name}</p>
-                        <p>{item.regNumber}</p>
-                        <p>{item.vehicle}</p>
-                      </div>
-                      <div className="flex flex-col w-1/5">
-                        <button className=" text-red-500">
+            {userData.length < 1 ? (
+              <button
+                className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                onClick={onClickAdd}
+              >
+                Add Vehicle
+              </button>
+            ) : (
+              userData.map((item) =>
+                parseInt(item.slotNumber) === slotNum ? (
+                  <div className="flex w-64 items-start">
+                    <div className="w-4/5">
+                      <p className="text-center">Slot {item.slotNumber}</p>
+                      <p>{item.name}</p>
+                      <p>{item.regNumber}</p>
+                      <p>{item.vehicle}</p>
+                    </div>
+                    {addClick ? (
+                      <div className="flex flex-col items-end w-1/5">
+                        <button
+                          onClick={() => onClickRemoveData(item.slotNumber - 1)}
+                          className=" text-red-500"
+                        >
                           <RemoveCircleIcon />
                         </button>
                         <button className="text-gray-700">
                           <EditIcon />
                         </button>
                       </div>
-                    </div>
-                  ) : (
-                    "Slot is Empty"
-                  )
-                )}
+                    ) : (
+                      <button
+                        className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                        onClick={onClickAdd}
+                      >
+                        Add Vehicle
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    className="px-2 rounded py-1 shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                    onClick={onClickAdd}
+                  >
+                    2.Add Vehicle
+                  </button>
+                )
+              )
+            )}
           </div>
         ))}
       </div>

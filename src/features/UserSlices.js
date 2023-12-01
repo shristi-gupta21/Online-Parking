@@ -14,7 +14,6 @@ export const userSlices = createSlice({
       state.users.splice(action.payload.index, 1);
     },
     updateUser: (state, action) => {
-      console.log("action", action.payload);
 
       state.edit = action.payload.index;
     },
@@ -22,7 +21,6 @@ export const userSlices = createSlice({
       state.users = action.payload;
     },
     searchUser: (state, action) => {
-      console.log(action.payload);
       state.search = action.payload;
     },
   },
