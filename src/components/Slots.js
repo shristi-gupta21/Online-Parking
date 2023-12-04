@@ -10,6 +10,7 @@ import {
 import { addSlot, SelectedSlot } from "../features/GenerateSlices";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import EditIcon from "@mui/icons-material/Edit";
+import EnterDetails from './EnterDetails'
 
 const Slots = ({ slotNumber, onShowDetails }) => {
   const userData = useSelector(UserData);
@@ -34,8 +35,11 @@ const Slots = ({ slotNumber, onShowDetails }) => {
     userData.map((item) =>
       setSlotNumbersArr((prev) => [...prev, item.slotNumber])
     );
+    setIsPresentSlot(
+      userData.filter((item) => slotNumbersArr.includes(item.slotNumber)),
+   );
   }, [searchedData, updateUserData, userData]);
-  console.log(slotNumbersArr);
+  console.log(isPresentSlot);
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
@@ -62,18 +66,17 @@ const Slots = ({ slotNumber, onShowDetails }) => {
     }
   };
   const onClickAdd = () => {
-    setAddClick(true);
-    setIsPresentSlot((prev) => [
-      ...prev,
-      userData.filter((item) => slotNumbersArr.includes(item.slotNumber)),
-    ]);
+    setAddClick(!addClick);
     if (addClick) {
       document.querySelector(".add-details").style.display = "block";
     }
   };
-  console.log(isPresentSlot);
+ 
   return (
     <div>
+      <div>
+        {addClick && <EnterDetails/>}
+      </div>
       <h1 className="text-center py-4 font-semibold w-full text-xl uppercase">
         Slots
       </h1>
@@ -131,12 +134,12 @@ const Slots = ({ slotNumber, onShowDetails }) => {
             {userData.length > 0 &&
               userData.map((item) =>
                 isPresentSlot.map(slot => (
-                  slot === item.slotNumber ? "work":
+                  parseInt(slot.slotNumber) === parseInt(item.slotNumber) ? "":
                   <button
                     className="px-2 rounded py-1 shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
                     onClick={onClickAdd}
                   >
-                    2.Add Vehicle
+                   Add
                   </button>
                 )) 
               )}
