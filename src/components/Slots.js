@@ -10,7 +10,7 @@ import {
 import { addSlot, SelectedSlot } from "../features/GenerateSlices";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import EditIcon from "@mui/icons-material/Edit";
-import EnterDetails from './EnterDetails'
+import EnterDetails from "./EnterDetails";
 
 const Slots = ({ slotNumber, onShowDetails }) => {
   const userData = useSelector(UserData);
@@ -24,22 +24,15 @@ const Slots = ({ slotNumber, onShowDetails }) => {
   const dispatch = useDispatch();
   const updateUserData = useSelector(UpdateUsers);
   const [addClick, setAddClick] = useState(false);
-  const [slotNumbersArr, setSlotNumbersArr] = useState([]);
-  const [isPresentSlot, setIsPresentSlot] = useState([]);
+  const [filledSlot, setFilledSlot] = useState([]);
   useEffect(() => {
     if (searchedData !== "") {
       showSearchedUser(searchedData);
     } else {
       showSearchedUser(searchedData);
     }
-    userData.map((item) =>
-      setSlotNumbersArr((prev) => [...prev, item.slotNumber])
-    );
-    setIsPresentSlot(
-      userData.filter((item) => slotNumbersArr.includes(item.slotNumber)),
-   );
+    userData.map((item) => setFilledSlot((prev) => [...prev, item.slotNumber]));
   }, [searchedData, updateUserData, userData]);
-  console.log(isPresentSlot);
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
@@ -67,16 +60,12 @@ const Slots = ({ slotNumber, onShowDetails }) => {
   };
   const onClickAdd = () => {
     setAddClick(!addClick);
-    if (addClick) {
-      document.querySelector(".add-details").style.display = "block";
-    }
   };
- 
+  console.log("filledSlot", filledSlot);
+
   return (
     <div>
-      <div>
-        {addClick && <EnterDetails/>}
-      </div>
+      {addClick && <EnterDetails />}
       <h1 className="text-center py-4 font-semibold w-full text-xl uppercase">
         Slots
       </h1>
@@ -131,17 +120,16 @@ const Slots = ({ slotNumber, onShowDetails }) => {
                   )
               )
             )}
-            {userData.length > 0 &&
-              userData.map((item) =>
-                isPresentSlot.map(slot => (
-                  parseInt(slot.slotNumber) === parseInt(item.slotNumber) ? "":
-                  <button
-                    className="px-2 rounded py-1 shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                    onClick={onClickAdd}
-                  >
-                   Add
-                  </button>
-                )) 
+            {filledSlot.length > 0 &&
+              userData.map((slot) =>
+                filledSlot.map(
+                  (item) =>
+                    item.slotNumber !== slot && (
+                      <button className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white">
+                        Add
+                      </button>
+                    )
+                )
               )}
           </div>
         ))}
