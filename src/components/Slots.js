@@ -25,6 +25,7 @@ const Slots = ({ slotNumber, onShowDetails }) => {
   const updateUserData = useSelector(UpdateUsers);
   const [addClick, setAddClick] = useState(false);
   const [filledSlot, setFilledSlot] = useState([]);
+  const [clickedSlot, setClickedSlot] = useState();
   useEffect(() => {
     if (searchedData !== "") {
       showSearchedUser(searchedData);
@@ -58,10 +59,11 @@ const Slots = ({ slotNumber, onShowDetails }) => {
       setSearchObj(d);
     }
   };
-  const onClickAdd = () => {
+  const onClickAdd = (slot) => {
     setAddClick(!addClick);
+    setClickedSlot(slot);
   };
-  console.log("filledSlot", filledSlot);
+ 
 
   return (
     <div>
@@ -72,14 +74,14 @@ const Slots = ({ slotNumber, onShowDetails }) => {
       <div className="flex gap-2 flex-wrap justify-center md:justify-start">
         {slotNumbersArray.map((slotNum) => (
           <div
-            key={slotNum}
+            key={"slot" + slotNum}
             onClick={onShowDetails}
             className="border rounded p-3 h-fit"
           >
             {userData.length < 1 ? (
               <button
                 className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                onClick={onClickAdd}
+                onClick={() => onClickAdd(slotNum)}
               >
                 Add Vehicle
               </button>
@@ -94,7 +96,7 @@ const Slots = ({ slotNumber, onShowDetails }) => {
                         <p>{item.regNumber}</p>
                         <p>{item.vehicle}</p>
                       </div>
-                      {addClick ? (
+                      {
                         <div className="flex flex-col items-end w-1/5">
                           <button
                             onClick={() =>
@@ -108,14 +110,7 @@ const Slots = ({ slotNumber, onShowDetails }) => {
                             <EditIcon />
                           </button>
                         </div>
-                      ) : (
-                        <button
-                          className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                          onClick={onClickAdd}
-                        >
-                          Add Vehicle
-                        </button>
-                      )}
+                      }
                     </div>
                   )
               )
@@ -125,7 +120,10 @@ const Slots = ({ slotNumber, onShowDetails }) => {
                 filledSlot.map(
                   (item) =>
                     item.slotNumber !== slot && (
-                      <button className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white">
+                      <button
+                        onClick={onClickAdd}
+                        className="px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                      >
                         Add
                       </button>
                     )

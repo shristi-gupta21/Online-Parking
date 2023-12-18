@@ -52,7 +52,7 @@ const EnterDetails = () => {
   const onChangeData = (e) => {
     setData({
       ...data,
-      [e.target.id]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -194,6 +194,7 @@ const EnterDetails = () => {
         slotNumber: "",
         vehicle: "",
       });
+      document.querySelector(".add-details").style.display = "none";
     } else if (slotData === null) {
       alert("Generate Slot");
     }
@@ -280,9 +281,11 @@ const EnterDetails = () => {
     document.querySelector(".add-details").style.display = "none";
   };
 
+  // console.log(data);
   return (
     <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
+        id="enter-details"
         action=""
         onSubmit={(e) =>
           updateUserData === null ? onSubmitData(e) : update(e)
@@ -301,9 +304,11 @@ const EnterDetails = () => {
           )}
           <div>
             <div className="flex gap-2">
+              
               <input
                 type="text"
                 id="name"
+                name="name"
                 placeholder="Owner name"
                 onChange={(e) => onChangeData(e)}
                 value={data.name}
@@ -329,6 +334,7 @@ const EnterDetails = () => {
             <div className="flex gap-2">
               <input
                 type="text"
+                name="regNumber"
                 id="regNumber"
                 placeholder="Registration number"
                 onChange={(e) => onChangeData(e)}
@@ -358,8 +364,9 @@ const EnterDetails = () => {
           <div>
             <div className="flex gap-2">
               <input
+                name="color"
                 type="text"
-                placeholder="Car/Bike color"
+                placeholder="Vehicle color"
                 id="color"
                 onChange={(e) => onChangeData(e)}
                 value={data.color}
@@ -385,6 +392,7 @@ const EnterDetails = () => {
               <input
                 type="text"
                 id="slotNumber"
+                name="slotNumber"
                 placeholder="Slot number"
                 onChange={(e) => onChangeData(e)}
                 value={data.slotNumber}
@@ -408,30 +416,35 @@ const EnterDetails = () => {
             )}
           </div>
           <div className="w-1/2">
+            <label name="vehicle" id="vehicle">Choose Vehicle</label>
             <div className="flex justify-around">
               <div>
                 <input
                   type="radio"
-                  id="vehicle"
+                  id="car"
                   name="vehicle"
                   value="Car"
                   onChange={(e) => onChangeData(e)}
                   checked={data.vehicle === "Car"}
                   className=" scale-105"
                 />
-                <label className="px-2 uppercase">Car</label>
+                <label htmlFor="car" className="px-2 uppercase">
+                  Car
+                </label>
               </div>
               <div>
                 <input
                   type="radio"
-                  id="vehicle"
+                  id="bike"
                   name="vehicle"
                   value="Bike"
                   onChange={(e) => onChangeData(e)}
                   checked={data.vehicle === "Bike"}
                   className=" scale-105"
                 />
-                <label className="px-2 uppercase">Bike</label>
+                <label htmlFor="bike" className="px-2 uppercase">
+                  Bike
+                </label>
               </div>
             </div>
             {valid && (
@@ -447,7 +460,8 @@ const EnterDetails = () => {
           <div>
             <button
               type="submit"
-              className="py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
+              onClick={close}
+              className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
             >
               {updateUserData === null ? "Add" : "Update"}
             </button>

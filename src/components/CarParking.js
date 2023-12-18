@@ -7,7 +7,6 @@ import Slots from "./Slots";
 const CarParking = () => {
   const slotsData = useSelector(SelectedSlot);
   const userData = useSelector(UserData);
-  console.log(slotsData?.slots)
   return (
     <>
       {slotsData !== null ? (

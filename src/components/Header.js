@@ -13,7 +13,6 @@ const Header = () => {
     console.log(e.target.value);
     e.preventDefault();
     if (e.target.value !== "" && e.key !== "Enter") {
-      console.log("working");
       let searchText = e.target.value;
       dispatch(searchUser(searchText));
     }
@@ -30,7 +29,7 @@ const Header = () => {
         <img
           src={process.env.PUBLIC_URL + "./images/logo.png"}
           className="px-2 h-full w-14"
-          alt=""
+          alt="" 
         />
       </div>
       <div className="flex items-center gap-4 justify-end w-1/5 pr-10">
@@ -50,7 +49,7 @@ const Header = () => {
           </div>
         )}
         <button id="add-btn" onClick={onClickAdd}>
-          <AddIcon  style={{ color: "#FFFFFF" }} />
+          <AddIcon style={{ color: "#FFFFFF" }} />
         </button>
         {openAdd && <EnterDetails />}
       </div>
