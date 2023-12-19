@@ -280,8 +280,14 @@ const EnterDetails = () => {
   const close = () => {
     document.querySelector(".add-details").style.display = "none";
   };
+  const closeAddDetails = () => {
+    if(valid?.length === 0){
+      console.log("working")
+      document.querySelector(".add-details").style.display = "none";
+    }
+  };
 
-  // console.log(data);
+  // console.log("valid",valid);
   return (
     <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
@@ -458,10 +464,11 @@ const EnterDetails = () => {
             )}
           </div>
           <div>
+           
             <button
               type="submit"
-              onClick={close}
-              className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350"
+              onClick={ closeAddDetails}
+              className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350 disabled:opacity-25"
             >
               {updateUserData === null ? "Add" : "Update"}
             </button>

@@ -11,10 +11,17 @@ export const userSlices = createSlice({
       state.users.splice(state.users.length, 0, action.payload);
     },
     removeUser: (state, action) => {
-      state.users.splice(action.payload.index, 1);
+      const newItems = [
+        ...state.users.slice(0, action.payload.index),
+        ...state.users.slice(action.payload.index + 1),
+      ];
+      console.log(newItems)
+      return {
+        ...state,
+        users: newItems,
+      };
     },
     updateUser: (state, action) => {
-
       state.edit = action.payload.index;
     },
     addNewUpdatedData: (state, action) => {

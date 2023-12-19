@@ -34,8 +34,11 @@ const Slots = ({ slotNumber, onShowDetails }) => {
     }
     userData.map((item) => setFilledSlot((prev) => [...prev, item.slotNumber]));
   }, [searchedData, updateUserData, userData]);
+
   const onClickRemoveData = (i) => {
+    console.log("i",i)
     dispatch(removeUser({ index: i }));
+    const newArr = userData.filter(item => parseInt(item.slotNumber) === i+1);
     updateUserData !== null && dispatch(updateUser({ index: null }));
     dispatch(addSlot({ slots: slotsData.slots + 1 }));
   };
@@ -62,8 +65,16 @@ const Slots = ({ slotNumber, onShowDetails }) => {
   const onClickAdd = (slot) => {
     setAddClick(!addClick);
     setClickedSlot(slot);
+    // filledSlot = []
+    // setFilledSlot(filledSlot)
+    if (addClick) {
+      document
+        .querySelector(".add-details-btn")
+        .addEventListener("click", () => {
+          setAddClick(false);
+        });
+    }
   };
- 
 
   return (
     <div>
