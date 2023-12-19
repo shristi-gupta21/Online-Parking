@@ -24,7 +24,12 @@ const Header = () => {
     }
   };
   return (
-    <div className="flex bg-gradient-to-r from-purple-800 to-blue-350">
+    // <div className="">
+
+
+    // </div>
+
+    <div className="fixed w-full flex bg-gradient-to-r from-purple-800 to-blue-350">
       <div className="flex flex-1 p-3 ">
         <img
           src={process.env.PUBLIC_URL + "./images/logo.png"}
