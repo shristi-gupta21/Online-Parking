@@ -1,8 +1,20 @@
 import Header from "./components/Header";
 import SideNavRouter from "./components/SideNavRouter";
 import SideNav from "./components/SideNav";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname !== "/") {
+      navigate("/");
+    } 
+  }, []);
+
   return (
     <div>
       <Header />
