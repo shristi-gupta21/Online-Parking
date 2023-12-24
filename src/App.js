@@ -9,7 +9,6 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(location.pathname);
     if (location.pathname !== "/") {
       navigate("/");
     } 
