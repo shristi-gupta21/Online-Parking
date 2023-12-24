@@ -41,7 +41,7 @@ const Slots = ({ slotNumber }) => {
       }
     });
   }, [searchedData, updateUserData, userData]);
-console.log(data)
+  console.log(data);
   const onClickRemoveData = (i) => {
     console.log("i", i);
     dispatch(removeUser({ index: i }));
@@ -86,39 +86,32 @@ console.log(data)
         Slots
       </h1>
       <div className="flex gap-2 flex-wrap justify-center md:justify-start">
-        {slotNumbersArray.map((slotNum) =>
-          userData.length < 1 ? (
-            <div className="border rounded p-3 h-fit">
-              <button
-                className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                onClick={() => onClickAdd()}
-              >
-                Add Vehicle
-              </button>
-            </div>
-          ) : (
-            data.map((item) =>
-              item !== null ? (
-                parseInt(item.slotNumber) === slotNum && (
-                  <div className="border px-4 py-2">
-                    <p>Slot {item.slotNumber}</p>
-                    <p>{item.name}</p>
-                    <p>{item.regNumber}</p>
-                    <p>{item.color}</p>
-                    <p>{item.vehicle}</p>
-                  </div>
-                )
+        {slotNumbersArray.map((slotNum) => {
+          const matchingItem = data.find(
+            (item) => item && parseInt(item.slotNumber) === slotNum
+          );
+
+          return (
+            <div className="border px-4 py-2 h-fit" key={slotNum}>
+              {matchingItem ? (
+                <>
+                  <p>Slot {matchingItem.slotNumber}</p>
+                  <p>{matchingItem.name}</p>
+                  <p>{matchingItem.regNumber}</p>
+                  <p>{matchingItem.color}</p>
+                  <p>{matchingItem.vehicle}</p>
+                </>
               ) : (
                 <button
                   className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                  onClick={() => onClickAdd()}
+                  onClick={() => onClickAdd(slotNum)}
                 >
                   Add Vehicle
                 </button>
-              )
-            )
-          )
-        )}
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
