@@ -41,7 +41,7 @@ const Slots = ({ slotNumber }) => {
       }
     });
   }, [searchedData, updateUserData, userData]);
-  console.log(data);
+
   const onClickRemoveData = (i) => {
     console.log("i", i);
     dispatch(removeUser({ index: i }));
@@ -69,16 +69,29 @@ const Slots = ({ slotNumber }) => {
     }
   };
   const onClickAdd = () => {
-    setAddClick(!addClick);
-    if (addClick) {
-      document
-        .querySelector(".add-details-btn")
-        .addEventListener("click", () => {
-          setAddClick(false);
-        });
-    }
+    setAddClick((prevAddClick) => !prevAddClick);
   };
-
+  
+  if (!addClick) {
+    const btnClickHandler = (event) => {
+      // Handle the click on the "add" or "close" button inside the form
+      setAddClick(false);
+      const buttonClass = event.currentTarget.classList[0];
+      document.querySelector(`.${buttonClass}`).removeEventListener("click", btnClickHandler);
+    };
+  
+    const addDetailsBtn = document.querySelector(".add-details-btn");
+    const closeDetailsBtn = document.querySelector(".close-btn");
+  
+    if (addDetailsBtn) {
+      addDetailsBtn.addEventListener("click", btnClickHandler);
+    }
+  
+    if (closeDetailsBtn) {
+      closeDetailsBtn.addEventListener("click", btnClickHandler);
+    }
+  }
+  
   return (
     <div>
       {addClick && <EnterDetails />}
