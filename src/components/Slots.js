@@ -43,10 +43,11 @@ const Slots = ({ slotNumber }) => {
   }, [searchedData, updateUserData, userData]);
 
   const onClickRemoveData = (i) => {
-    console.log("i", i);
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
     dispatch(addSlot({ slots: slotsData.slots + 1 }));
+    const modifiedData = data.filter((item, index) => i !== index);
+    setData(modifiedData);
   };
 
   const onClickUpdateData = (i) => {
@@ -71,27 +72,29 @@ const Slots = ({ slotNumber }) => {
   const onClickAdd = () => {
     setAddClick((prevAddClick) => !prevAddClick);
   };
-  
+
   if (!addClick) {
     const btnClickHandler = (event) => {
       // Handle the click on the "add" or "close" button inside the form
       setAddClick(false);
       const buttonClass = event.currentTarget.classList[0];
-      document.querySelector(`.${buttonClass}`).removeEventListener("click", btnClickHandler);
+      document
+        .querySelector(`.${buttonClass}`)
+        .removeEventListener("click", btnClickHandler);
     };
-  
+
     const addDetailsBtn = document.querySelector(".add-details-btn");
     const closeDetailsBtn = document.querySelector(".close-btn");
-  
+
     if (addDetailsBtn) {
       addDetailsBtn.addEventListener("click", btnClickHandler);
     }
-  
+
     if (closeDetailsBtn) {
       closeDetailsBtn.addEventListener("click", btnClickHandler);
     }
   }
-  
+
   return (
     <div>
       {addClick && <EnterDetails />}
@@ -99,7 +102,7 @@ const Slots = ({ slotNumber }) => {
         Slots
       </h1>
       <div className="flex gap-2 flex-wrap justify-center md:justify-start">
-        {slotNumbersArray.map((slotNum) => {
+        {slotNumbersArray.map((slotNum, i) => {
           const matchingItem = data.find(
             (item) => item && parseInt(item.slotNumber) === slotNum
           );
@@ -107,13 +110,26 @@ const Slots = ({ slotNumber }) => {
           return (
             <div className="border px-4 py-2 h-fit" key={slotNum}>
               {matchingItem ? (
-                <>
-                  <p>Slot {matchingItem.slotNumber}</p>
-                  <p>{matchingItem.name}</p>
-                  <p>{matchingItem.regNumber}</p>
-                  <p>{matchingItem.color}</p>
-                  <p>{matchingItem.vehicle}</p>
-                </>
+                <div className="flex justify-between">
+                  <div>
+                    <p>Slot {matchingItem.slotNumber}</p>
+                    <p>{matchingItem.name}</p>
+                    <p>{matchingItem.regNumber}</p>
+                    <p>{matchingItem.color}</p>
+                    <p>{matchingItem.vehicle}</p>
+                  </div>
+                  <div>
+                    <button
+                      className="text-red-500"
+                      onClick={() => onClickRemoveData(i)}
+                    >
+                      <RemoveCircleIcon />
+                    </button>
+                    <button>
+                      <EditIcon />
+                    </button>
+                  </div>
+                </div>
               ) : (
                 <button
                   className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
