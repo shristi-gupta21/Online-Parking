@@ -98,27 +98,34 @@ const Slots = ({ slotNumber }) => {
   return (
     <div>
       {addClick && <EnterDetails />}
-      <h1 className="text-center py-4 font-semibold w-full text-xl uppercase">
+      <h1 className="text-center py-4 font-semibold w-full text-2xl uppercase underline">
         Slots
       </h1>
-      <div className="flex gap-2 flex-wrap justify-center md:justify-start">
+      <div className="flex flex-col md:flex-row gap-2 md:pt-4 flex-wrap items-center justify-center md:justify-start">
         {slotNumbersArray.map((slotNum, i) => {
           const matchingItem = data.find(
             (item) => item && parseInt(item.slotNumber) === slotNum
           );
 
           return (
-            <div className="border px-4 py-2 h-fit" key={slotNum}>
+            <div
+              className={`px-4 py-2 h-fit ${
+                matchingItem ? "w-80 border" : "w-fit"
+              }`}
+              key={slotNum}
+            >
               {matchingItem ? (
                 <div className="flex justify-between">
-                  <div>
-                    <p>Slot {matchingItem.slotNumber}</p>
+                  <div className="w-11/12">
+                    <p className="text-center font-bold text-lg">
+                      Slot {matchingItem.slotNumber}
+                    </p>
                     <p>{matchingItem.name}</p>
                     <p>{matchingItem.regNumber}</p>
                     <p>{matchingItem.color}</p>
                     <p>{matchingItem.vehicle}</p>
                   </div>
-                  <div>
+                  <div className="flex flex-col">
                     <button
                       className="text-red-500"
                       onClick={() => onClickRemoveData(i)}
