@@ -41,7 +41,7 @@ const Slots = ({ slotNumber }) => {
       }
     });
   }, [searchedData, updateUserData, userData]);
-
+  // console.log(userData);
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
@@ -51,7 +51,16 @@ const Slots = ({ slotNumber }) => {
   };
 
   const onClickUpdateData = (i) => {
-    dispatch(updateUser({ index: i }));
+    // console.log(i);
+    // const arr = data.filter((item) => item ?? null);
+    const foundObj = userData.find(
+      (item) => item.slotNumber === data[i].slotNumber
+    );
+    const index = foundObj ? userData.indexOf(foundObj) : -1;
+    console.log(index);
+    setAddClick(true);
+    document.querySelector(".add-details").style.display = "";
+    dispatch(updateUser({ index: index }));
   };
 
   const showSearchedUser = (data) => {
@@ -94,7 +103,7 @@ const Slots = ({ slotNumber }) => {
       closeDetailsBtn.addEventListener("click", btnClickHandler);
     }
   }
-
+  // console.log(addClick);
   return (
     <div>
       {addClick && <EnterDetails />}
@@ -132,7 +141,7 @@ const Slots = ({ slotNumber }) => {
                     >
                       <RemoveCircleIcon />
                     </button>
-                    <button>
+                    <button onClick={() => onClickUpdateData(i)}>
                       <EditIcon />
                     </button>
                   </div>

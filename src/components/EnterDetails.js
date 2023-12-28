@@ -202,6 +202,7 @@ const EnterDetails = () => {
 
   const update = (e) => {
     e.preventDefault();
+    document.querySelector(".add-details").style.display = "none";
     if (
       validation() &&
       updateUserData !== null &&
@@ -281,13 +282,13 @@ const EnterDetails = () => {
     document.querySelector(".add-details").style.display = "none";
   };
   const closeAddDetails = () => {
-    if(valid?.length === 0){
-      console.log("working")
+    if (valid?.length === 0) {
+      console.log("working");
       document.querySelector(".add-details").style.display = "none";
     }
   };
 
-  // console.log("valid",valid);
+  console.log("updateUserData", updateUserData);
   return (
     <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
@@ -310,7 +311,6 @@ const EnterDetails = () => {
           )}
           <div>
             <div className="flex gap-2">
-              
               <input
                 type="text"
                 id="name"
@@ -422,7 +422,9 @@ const EnterDetails = () => {
             )}
           </div>
           <div className="w-1/2">
-            <label name="vehicle" id="vehicle">Choose Vehicle</label>
+            <label name="vehicle" id="vehicle">
+              Choose Vehicle
+            </label>
             <div className="flex justify-around">
               <div>
                 <input
@@ -464,10 +466,9 @@ const EnterDetails = () => {
             )}
           </div>
           <div>
-           
             <button
               type="submit"
-              onClick={ closeAddDetails}
+              onClick={closeAddDetails}
               className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350 disabled:opacity-25"
             >
               {updateUserData === null ? "Add" : "Update"}
