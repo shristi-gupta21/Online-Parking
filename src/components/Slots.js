@@ -41,7 +41,6 @@ const Slots = ({ slotNumber }) => {
       }
     });
   }, [searchedData, updateUserData, userData]);
-  // console.log(userData);
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
@@ -51,8 +50,6 @@ const Slots = ({ slotNumber }) => {
   };
 
   const onClickUpdateData = (i) => {
-    // console.log(i);
-    // const arr = data.filter((item) => item ?? null);
     const foundObj = userData.find(
       (item) => item.slotNumber === data[i].slotNumber
     );
