@@ -100,7 +100,7 @@ const Slots = ({ slotNumber }) => {
       closeDetailsBtn.addEventListener("click", btnClickHandler);
     }
   }
-  // console.log(addClick);
+  console.log(searchObj);
   return (
     <div>
       {addClick && <EnterDetails />}
@@ -113,7 +113,39 @@ const Slots = ({ slotNumber }) => {
             (item) => item && parseInt(item.slotNumber) === slotNum
           );
 
-          return (
+          return searchObj && searchObj["fetch"] ? (
+            searchObj["obj"].map((item) => (
+              <div
+                className={`px-4 py-2 h-fit ${
+                  matchingItem ? "w-80 border" : "w-fit"
+                }`}
+                key={slotNum}
+              >
+                <div className="flex justify-between">
+                  <div className="w-11/12">
+                    <p className="text-center font-bold text-lg">
+                      Slot {item.slotNumber + " searched"}
+                    </p>
+                    <p>{item.name}</p>
+                    <p>{item.regNumber}</p>
+                    <p>{item.color}</p>
+                    <p>{item.vehicle}</p>
+                  </div>
+                  <div className="flex flex-col">
+                    <button
+                      className="text-red-500"
+                      onClick={() => onClickRemoveData(i)}
+                    >
+                      <RemoveCircleIcon />
+                    </button>
+                    <button onClick={() => onClickUpdateData(i)}>
+                      <EditIcon />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
             <div
               className={`px-4 py-2 h-fit ${
                 matchingItem ? "w-80 border" : "w-fit"
@@ -124,7 +156,7 @@ const Slots = ({ slotNumber }) => {
                 <div className="flex justify-between">
                   <div className="w-11/12">
                     <p className="text-center font-bold text-lg">
-                      Slot {matchingItem.slotNumber}
+                      Slot {matchingItem.slotNumber + " matched"}
                     </p>
                     <p>{matchingItem.name}</p>
                     <p>{matchingItem.regNumber}</p>
