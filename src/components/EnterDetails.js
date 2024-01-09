@@ -202,7 +202,9 @@ const EnterDetails = () => {
 
   const update = (e) => {
     e.preventDefault();
-    document.querySelector(".add-details").style.display = "none";
+    if (valid?.length === 0) {
+      document.querySelector(".add-details").style.display = "none";
+    }
     if (
       validation() &&
       updateUserData !== null &&
