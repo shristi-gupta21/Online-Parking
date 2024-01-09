@@ -50,7 +50,6 @@ const Slots = ({ slotNumber }) => {
       (item) => item.slotNumber === data[i].slotNumber
     );
     const index = foundObj ? userData.indexOf(foundObj) : -1;
-    console.log(index);
     setAddClick(true);
     document.querySelector(".add-details").style.display = "";
     dispatch(updateUser({ index: index }));
@@ -71,7 +70,6 @@ const Slots = ({ slotNumber }) => {
       const d = { obj: obj, fetch: false };
       setSearchObj(d);
     }
-    console.log("data", data);
   };
   const onClickAdd = () => {
     setAddClick((prevAddClick) => !prevAddClick);

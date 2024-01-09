@@ -29,7 +29,6 @@ const EnterDetails = () => {
   // console.log("updateUserData.length", updateUserData);
   useEffect(() => {
     if (updateUserData !== null) {
-      console.log("updateUserData", updateUserData);
       setData({
         name: userData[updateUserData]?.name,
         regNumber: userData[updateUserData]?.regNumber,
@@ -125,8 +124,12 @@ const EnterDetails = () => {
         /^[a-zA-Z]{2}[-]{1}[0-9]{2}[-]{1}[a-zA-Z]{2}[-][0-9]{4}$/gi;
       const regexColor = /^[A-Za-z]+$/;
       const regexSlotNumber = /^[1-9][0-9]*$/;
+      const regexNumber = /\d/;
       if (!regexName.test(data.name)) {
         errorObj["name"] = "Enter name of length 4 to 29";
+      }
+      if (regexNumber.test(data.name)) {
+        errorObj["name"] = "Enter alphabets only";
       }
       if (data.regNumber.match(regexReg) === null) {
         errorObj["regNumber"] = "Enter in specific format only";
@@ -204,24 +207,64 @@ const EnterDetails = () => {
     e.preventDefault();
     if (valid?.length === 0) {
       document.querySelector(".add-details").style.display = "none";
-    }
-    if (
-      validation() &&
-      updateUserData !== null &&
-      isSlotBetweenGivenSlot(data.slotNumber) &&
-      isSlotBetweenLess(data.slotNumber)
-    ) {
-      if (updateUserData >= 0 && userData.length !== 1) {
-        const object = userData.filter(
-          (item) => item.id !== userData[updateUserData]?.id
-        );
-        console.log(object);
-        const isSlotAvailable = object.filter(
-          (item) =>
-            item.slotNumber === data.slotNumber ||
-            item.regNumber === data.regNumber
-        );
-        if (isSlotAvailable.length === 0) {
+    } else {
+      if (
+        validation() &&
+        updateUserData !== null &&
+        isSlotBetweenGivenSlot(data.slotNumber) &&
+        isSlotBetweenLess(data.slotNumber)
+      ) {
+        if (updateUserData >= 0 && userData.length !== 1) {
+          const object = userData.filter(
+            (item) => item.id !== userData[updateUserData]?.id
+          );
+          console.log(object);
+          const isSlotAvailable = object.filter(
+            (item) =>
+              item.slotNumber === data.slotNumber ||
+              item.regNumber === data.regNumber
+          );
+          if (isSlotAvailable.length === 0) {
+            const newArray = [...userData];
+            newArray[updateUserData] = {
+              ...newArray[updateUserData],
+              ...data,
+            };
+            dispatch(addNewUpdatedData(newArray));
+            setData({
+              name: "",
+              regNumber: "",
+              color: "",
+              slotNumber: "",
+              vehicle: "",
+            });
+            dispatch(updateUser({ index: null }));
+          } else {
+            const object = userData.filter(
+              (item) => item.id !== userData[updateUserData]?.id
+            );
+            console.log(object);
+            const isSlotAvailable = object.filter(
+              (item) => item.slotNumber === data.slotNumber
+            );
+            if (isSlotAvailable.length !== 0) {
+              setValid((prevState) => ({
+                ...prevState.valid,
+                slotNumber: "Already exist",
+              }));
+            }
+            const isSlotAvailable2 = object.filter(
+              (item) => item.regNumber === data.regNumber
+            );
+
+            if (isSlotAvailable2.length !== 0) {
+              setValid((prevState) => ({
+                ...prevState.valid,
+                regNumber: "Already exist",
+              }));
+            }
+          }
+        } else if (updateUserData === 0 && userData.length === 1) {
           const newArray = [...userData];
           newArray[updateUserData] = {
             ...newArray[updateUserData],
@@ -236,46 +279,7 @@ const EnterDetails = () => {
             vehicle: "",
           });
           dispatch(updateUser({ index: null }));
-        } else {
-          const object = userData.filter(
-            (item) => item.id !== userData[updateUserData]?.id
-          );
-          console.log(object);
-          const isSlotAvailable = object.filter(
-            (item) => item.slotNumber === data.slotNumber
-          );
-          if (isSlotAvailable.length !== 0) {
-            setValid((prevState) => ({
-              ...prevState.valid,
-              slotNumber: "Already exist",
-            }));
-          }
-          const isSlotAvailable2 = object.filter(
-            (item) => item.regNumber === data.regNumber
-          );
-
-          if (isSlotAvailable2.length !== 0) {
-            setValid((prevState) => ({
-              ...prevState.valid,
-              regNumber: "Already exist",
-            }));
-          }
         }
-      } else if (updateUserData === 0 && userData.length === 1) {
-        const newArray = [...userData];
-        newArray[updateUserData] = {
-          ...newArray[updateUserData],
-          ...data,
-        };
-        dispatch(addNewUpdatedData(newArray));
-        setData({
-          name: "",
-          regNumber: "",
-          color: "",
-          slotNumber: "",
-          vehicle: "",
-        });
-        dispatch(updateUser({ index: null }));
       }
     }
   };
