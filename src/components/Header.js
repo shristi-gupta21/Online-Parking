@@ -10,31 +10,28 @@ const Header = () => {
   const [openAdd, setOpenAdd] = useState(false);
   const dispatch = useDispatch();
   const onChangeSearch = (e) => {
-    console.log(e.target.value);
     e.preventDefault();
+    let searchText = e.target.value;
     if (e.target.value !== "" && e.key !== "Enter") {
-      let searchText = e.target.value;
+      dispatch(searchUser(searchText));
+    }
+    if (e.target.value === "") {
       dispatch(searchUser(searchText));
     }
   };
   const onClickAdd = () => {
     setOpenAdd(true);
-    if(openAdd){
+    if (openAdd) {
       document.querySelector(".add-details").style.display = "block";
     }
   };
   return (
-    // <div className="">
-
-
-    // </div>
-
     <div className="fixed w-full flex bg-gradient-to-r from-purple-800 to-blue-350">
       <div className="flex flex-1 p-3 ">
         <img
           src={process.env.PUBLIC_URL + "./images/logo.png"}
           className="px-2 h-full w-14"
-          alt="" 
+          alt=""
         />
       </div>
       <div className="flex items-center gap-4 justify-end w-1/5 pr-10">

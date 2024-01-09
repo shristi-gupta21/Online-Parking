@@ -27,11 +27,7 @@ const Slots = ({ slotNumber }) => {
   const [data, setData] = useState(Array(slotNumber).fill(null));
 
   useEffect(() => {
-    if (searchedData !== "") {
-      showSearchedUser(searchedData);
-    } else {
-      showSearchedUser(searchedData);
-    }
+    showSearchedUser(searchedData);
     userData.forEach((item) => {
       const index = item.slotNumber - 1;
       if (index >= 0 && index < data.length) {
@@ -61,11 +57,12 @@ const Slots = ({ slotNumber }) => {
   };
 
   const showSearchedUser = (data) => {
+    let d = {};
     if (data !== "") {
       const obj = userData.filter((item) =>
         item.regNumber.toLowerCase().includes(data)
       );
-      const d = { obj: obj, fetch: true };
+      d = { obj: obj, fetch: true };
       setSearchObj(d);
     } else {
       const obj = userData.filter((item) =>
@@ -74,6 +71,7 @@ const Slots = ({ slotNumber }) => {
       const d = { obj: obj, fetch: false };
       setSearchObj(d);
     }
+    console.log("data", data);
   };
   const onClickAdd = () => {
     setAddClick((prevAddClick) => !prevAddClick);
@@ -81,7 +79,6 @@ const Slots = ({ slotNumber }) => {
 
   if (!addClick) {
     const btnClickHandler = (event) => {
-      // Handle the click on the "add" or "close" button inside the form
       setAddClick(false);
       const buttonClass = event.currentTarget.classList[0];
       document
@@ -100,7 +97,6 @@ const Slots = ({ slotNumber }) => {
       closeDetailsBtn.addEventListener("click", btnClickHandler);
     }
   }
-  console.log(searchObj);
   return (
     <div>
       {addClick && <EnterDetails />}
@@ -108,84 +104,85 @@ const Slots = ({ slotNumber }) => {
         Slots
       </h1>
       <div className="flex flex-col md:flex-row gap-2 md:pt-4 flex-wrap items-center justify-center md:justify-start">
-        {slotNumbersArray.map((slotNum, i) => {
-          const matchingItem = data.find(
-            (item) => item && parseInt(item.slotNumber) === slotNum
-          );
-
-          return searchObj && searchObj["fetch"] ? (
-            searchObj["obj"].map((item) => (
+        {searchObj && searchObj["fetch"]
+          ? searchObj["obj"].map((item, i) => (
               <div
-                className={`px-4 py-2 h-fit ${
-                  matchingItem ? "w-80 border" : "w-fit"
-                }`}
-                key={slotNum}
+                className={`px-4 py-2 h-fit w-80 border 
+              `}
+                key={item.slotNumber}
               >
-                <div className="flex justify-between">
-                  <div className="w-11/12">
-                    <p className="text-center font-bold text-lg">
-                      Slot {item.slotNumber + " searched"}
-                    </p>
-                    <p>{item.name}</p>
-                    <p>{item.regNumber}</p>
-                    <p>{item.color}</p>
-                    <p>{item.vehicle}</p>
+                {
+                  <div className="flex justify-between">
+                    <div className="w-11/12">
+                      <p className="text-center font-bold text-lg">
+                        Slot {item.slotNumber}
+                      </p>
+                      <p>{item.name}</p>
+                      <p>{item.regNumber}</p>
+                      <p>{item.color}</p>
+                      <p>{item.vehicle}</p>
+                    </div>
+                    <div className="flex flex-col">
+                      <button
+                        className="text-red-500"
+                        onClick={() => onClickRemoveData(i)}
+                      >
+                        <RemoveCircleIcon />
+                      </button>
+                      <button onClick={() => onClickUpdateData(i)}>
+                        <EditIcon />
+                      </button>
+                    </div>
                   </div>
-                  <div className="flex flex-col">
-                    <button
-                      className="text-red-500"
-                      onClick={() => onClickRemoveData(i)}
-                    >
-                      <RemoveCircleIcon />
-                    </button>
-                    <button onClick={() => onClickUpdateData(i)}>
-                      <EditIcon />
-                    </button>
-                  </div>
-                </div>
+                }
               </div>
             ))
-          ) : (
-            <div
-              className={`px-4 py-2 h-fit ${
-                matchingItem ? "w-80 border" : "w-fit"
-              }`}
-              key={slotNum}
-            >
-              {matchingItem ? (
-                <div className="flex justify-between">
-                  <div className="w-11/12">
-                    <p className="text-center font-bold text-lg">
-                      Slot {matchingItem.slotNumber + " matched"}
-                    </p>
-                    <p>{matchingItem.name}</p>
-                    <p>{matchingItem.regNumber}</p>
-                    <p>{matchingItem.color}</p>
-                    <p>{matchingItem.vehicle}</p>
-                  </div>
-                  <div className="flex flex-col">
-                    <button
-                      className="text-red-500"
-                      onClick={() => onClickRemoveData(i)}
-                    >
-                      <RemoveCircleIcon />
-                    </button>
-                    <button onClick={() => onClickUpdateData(i)}>
-                      <EditIcon />
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <button
-                  className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                  onClick={() => onClickAdd(slotNum)}
+          : slotNumbersArray.map((slotNum, i) => {
+              const matchingItem = data.find(
+                (item) => item && parseInt(item.slotNumber) === slotNum
+              );
+              // console.log(slotNumbersArray);
+              return (
+                <div
+                  className={`px-4 py-2 h-fit ${
+                    matchingItem ? "w-80 border" : "w-fit"
+                  }`}
+                  key={slotNum}
                 >
-                  Add Vehicle
-                </button>
-              )}
-            </div>
-          );
-        })}
+                  {matchingItem ? (
+                    <div className="flex justify-between">
+                      <div className="w-11/12">
+                        <p className="text-center font-bold text-lg">
+                          Slot {matchingItem.slotNumber}
+                        </p>
+                        <p>{matchingItem.name}</p>
+                        <p>{matchingItem.regNumber}</p>
+                        <p>{matchingItem.color}</p>
+                        <p>{matchingItem.vehicle}</p>
+                      </div>
+                      <div className="flex flex-col">
+                        <button
+                          className="text-red-500"
+                          onClick={() => onClickRemoveData(i)}
+                        >
+                          <RemoveCircleIcon />
+                        </button>
+                        <button onClick={() => onClickUpdateData(i)}>
+                          <EditIcon />
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                      onClick={() => onClickAdd(slotNum)}
+                    >
+                      Add Vehicle
+                    </button>
+                  )}
+                </div>
+              );
+            })}
       </div>
     </div>
   );
