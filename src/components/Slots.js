@@ -58,8 +58,12 @@ const Slots = ({ slotNumber }) => {
   const showSearchedUser = (data) => {
     let d = {};
     if (data !== "") {
-      const obj = userData.filter((item) =>
-        item.regNumber.toLowerCase().includes(data)
+      const obj = userData.filter(
+        (item) =>
+          item.regNumber.toLowerCase().includes(data) ||
+          item.name.toLowerCase().includes(data) ||
+          item.color.toLowerCase().includes(data) ||
+          item.vehicle.toLowerCase().includes(data)
       );
       d = { obj: obj, fetch: true };
       setSearchObj(d);

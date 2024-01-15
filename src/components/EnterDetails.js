@@ -286,11 +286,26 @@ const EnterDetails = () => {
 
   const close = () => {
     document.querySelector(".add-details").style.display = "none";
+    setData({
+      name: "",
+      regNumber: "",
+      color: "",
+      slotNumber: "",
+      vehicle: "",
+    });
+    dispatch(updateUser({ index: null }));
   };
   const closeAddDetails = () => {
     if (valid?.length === 0) {
       console.log("working");
       document.querySelector(".add-details").style.display = "none";
+      setData({
+        name: "",
+        regNumber: "",
+        color: "",
+        slotNumber: "",
+        vehicle: "",
+      });
     }
   };
 
