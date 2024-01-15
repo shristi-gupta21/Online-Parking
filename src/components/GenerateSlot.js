@@ -26,22 +26,27 @@ const GenerateSlot = () => {
     setEnterSlot(formattedNumber);
   };
   return (
-    <div className="md:w-80 mt-4 md:mt-0 md:ml-2 p-3 md:py-5 md:px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-md md:rounded-lg">
-      <form action="" className="flex flex-col gap-y-2 md:gap-y-6" onSubmit={(e) => onClickGenerate(e)}>
+    <div className="md:w-80 mt-4 md:mt-0 md:ml-2 px-3 py-4 md:py-5 md:px-3 h-fit bg-gradient-to-r from-purple-800 to-blue-350 rounded-md md:rounded-lg">
+      <form
+        action=""
+        className="flex flex-col gap-y-2 md:gap-y-6"
+        onSubmit={(e) => onClickGenerate(e)}
+      >
         <div className="flex items-center gap-1 md:gap-4">
-          <label className=" text-sm md:text-base text-white font-medium" htmlFor="">
-            Generate Slots:
+          <label className=" text-base text-white font-medium" htmlFor="slots">
+            Generate Slots
           </label>
           <input
             pattern="[0-9.]+"
             type="text"
             onChange={(e) => onChangeEnterSlot(e)}
             value={enterSlot || ""}
-            className="h-8 bg-white/50 shadow rounded px-4 w-2/3 md:w-1/2"
+            id="slots"
+            className="h-8 bg-white/50 shadow rounded px-4 w-2/3 md:w-1/2 ml-4 md:ml-0"
           />
         </div>
         <button
-          className=" text-sm md:text-base py-2 bg-white/25 rounded shadow w-full font-medium hover:bg-white/60 cursor-pointer"
+          className=" text-sm md:text-base my-2 md:my-0 py-2 bg-white/25 rounded shadow w-full font-medium hover:bg-white/60 cursor-pointer"
           type="submit"
           disabled={enterSlot === ""}
         >

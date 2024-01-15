@@ -34,7 +34,7 @@ const Header = () => {
           alt=""
         />
       </div>
-      <div className="flex items-center gap-4 justify-end w-1/5 pr-10">
+      <div className="flex items-center gap-2 md:gap-4 justify-end w-1/5 pr-5 md:pr-10">
         {!clickSearch && (
           <button onClick={() => setClickSearch(true)}>
             <SearchIcon style={{ color: "#FFFFFF" }} />
@@ -44,7 +44,7 @@ const Header = () => {
           <div className="flex rounded-lg border border-white">
             <input
               type="search"
-              className=" bg-transparent h-1/2 focus:outline-none text-white px-4 rounded-lg w-80 placeholder:text-sm placeholder:text-white py-2"
+              className=" bg-transparent h-1/2 focus:outline-none text-white px-4 rounded-lg w-60 md:w-80 placeholder:text-sm placeholder:text-white py-2"
               placeholder="Search"
               onChange={(e) => onChangeSearch(e)}
             />

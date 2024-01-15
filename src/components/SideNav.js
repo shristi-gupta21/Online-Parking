@@ -16,8 +16,8 @@ const SideNav = () => {
           onClick={() => setPage("dashboard")}
           className={`${
             page === "dashboard"
-              ? "md:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 md:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
-              : "md:w-full text-black bg-none"
+              ? "lg:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 lg:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
+              : "lg:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DashboardIcon />
@@ -29,15 +29,15 @@ const SideNav = () => {
           className={`       
           ${
             page === "car-parking"
-              ? "md:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow md:translate-x-4 p-2 md:px-4 md:py-3"
-              : "md:w-full text-black bg-none"
+              ? "lg:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow lg:translate-x-4 p-2 md:px-4 md:py-3"
+              : "lg:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
           <DirectionsCarFilledIcon />
           Parking Space
         </Link>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center md:w-48 lg:w-60">
         <GenerateSlot />
       </div>
     </div>

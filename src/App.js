@@ -11,13 +11,13 @@ function App() {
   useEffect(() => {
     if (location.pathname !== "/") {
       navigate("/");
-    } 
+    }
   }, []);
 
   return (
     <div>
       <Header />
-      <div className="md:flex gap-16 w-full px-4 md:px-0 pt-16">
+      <div className="md:flex md:gap-20 lg:gap-24 xl:gap-16 w-full px-4 md:px-0 pt-16">
         <SideNav />
         <SideNavRouter />
       </div>
