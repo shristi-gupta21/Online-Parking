@@ -21,6 +21,7 @@ const Header = () => {
   };
   const onClickAdd = () => {
     setOpenAdd(true);
+    setClickSearch(false);
     if (openAdd) {
       document.querySelector(".add-details").style.display = "block";
     }
@@ -36,7 +37,12 @@ const Header = () => {
       </div>
       <div className="flex items-center gap-2 md:gap-4 justify-end w-1/5 pr-5 md:pr-10">
         {!clickSearch && (
-          <button onClick={() => setClickSearch(true)}>
+          <button
+            onClick={() => {
+              setClickSearch(true);
+              setOpenAdd(false);
+            }}
+          >
             <SearchIcon style={{ color: "#FFFFFF" }} />
           </button>
         )}
