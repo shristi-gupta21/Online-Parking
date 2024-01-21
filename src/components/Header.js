@@ -22,6 +22,7 @@ const Header = () => {
   const onClickAdd = () => {
     setOpenAdd(true);
     setClickSearch(false);
+    dispatch(searchUser(""));
     if (openAdd) {
       document.querySelector(".add-details").style.display = "block";
     }

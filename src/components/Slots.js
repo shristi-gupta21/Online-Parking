@@ -37,6 +37,7 @@ const Slots = ({ slotNumber }) => {
       }
     });
   }, [searchedData, updateUserData, userData]);
+
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
