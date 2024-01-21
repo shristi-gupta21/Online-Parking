@@ -100,14 +100,15 @@ const Slots = ({ slotNumber }) => {
     }
   }
   return (
-    <div>
+    <div class="w-full">
       {addClick && <EnterDetails />}
-      <h1 className="text-center py-4 font-semibold w-full text-2xl uppercase underline">
+      <h1 className="text-center py-4 font-semibold w-full text-xl md:text-3xl uppercase underline">
         Slots
       </h1>
       <div className="flex flex-col md:flex-row gap-2 md:pt-4 flex-wrap items-center justify-center md:justify-start">
-        {searchObj && searchObj["fetch"]
-          ? searchObj["obj"].map((item, i) => (
+        {searchObj && searchObj["fetch"] ? (
+          searchObj["obj"].length > 0 ? (
+            searchObj["obj"].map((item, i) => (
               <div
                 className={`px-4 py-2 h-fit w-80 border 
               `}
@@ -139,52 +140,59 @@ const Slots = ({ slotNumber }) => {
                 }
               </div>
             ))
-          : slotNumbersArray.map((slotNum, i) => {
-              const matchingItem = data.find(
-                (item) => item && parseInt(item.slotNumber) === slotNum
-              );
-              // console.log(slotNumbersArray);
-              return (
-                <div
-                  className={`px-4 py-2 h-fit ${
-                    matchingItem ? "w-80 border" : "w-fit"
-                  }`}
-                  key={slotNum}
-                >
-                  {matchingItem ? (
-                    <div className="flex justify-between">
-                      <div className="w-11/12">
-                        <p className="text-center font-bold text-lg">
-                          Slot {matchingItem.slotNumber}
-                        </p>
-                        <p>{matchingItem.name}</p>
-                        <p>{matchingItem.regNumber}</p>
-                        <p>{matchingItem.color}</p>
-                        <p>{matchingItem.vehicle}</p>
-                      </div>
-                      <div className="flex flex-col">
-                        <button
-                          className="text-red-500"
-                          onClick={() => onClickRemoveData(i)}
-                        >
-                          <RemoveCircleIcon />
-                        </button>
-                        <button onClick={() => onClickUpdateData(i)}>
-                          <EditIcon />
-                        </button>
-                      </div>
+          ) : (
+            <div className="mx-auto flex items-center justify-center h-80 md:h-96 md:w-full text-xl md:text-3xl font-medium text-slate-500">
+              No data found ..
+            </div>
+          )
+        ) : (
+          slotNumbersArray.map((slotNum, i) => {
+            const matchingItem = data.find(
+              (item) => item && parseInt(item.slotNumber) === slotNum
+            );
+            // console.log(slotNumbersArray);
+            return (
+              <div
+                className={`px-4 py-2 h-fit ${
+                  matchingItem ? "w-80 border" : "w-fit"
+                }`}
+                key={slotNum}
+              >
+                {matchingItem ? (
+                  <div className="flex justify-between">
+                    <div className="w-11/12">
+                      <p className="text-center font-bold text-lg">
+                        Slot {matchingItem.slotNumber}
+                      </p>
+                      <p>{matchingItem.name}</p>
+                      <p>{matchingItem.regNumber}</p>
+                      <p>{matchingItem.color}</p>
+                      <p>{matchingItem.vehicle}</p>
                     </div>
-                  ) : (
-                    <button
-                      className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
-                      onClick={() => onClickAdd(slotNum)}
-                    >
-                      Add Vehicle
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+                    <div className="flex flex-col">
+                      <button
+                        className="text-red-500"
+                        onClick={() => onClickRemoveData(i)}
+                      >
+                        <RemoveCircleIcon />
+                      </button>
+                      <button onClick={() => onClickUpdateData(i)}>
+                        <EditIcon />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button
+                    className="add-btn px-2 py-1 rounded shadow bg-gradient-to-r from-purple-800 to-blue-350 text-white"
+                    onClick={() => onClickAdd(slotNum)}
+                  >
+                    Add Vehicle
+                  </button>
+                )}
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );
