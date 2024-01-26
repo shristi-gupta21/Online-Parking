@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, TotalSlots } from "../features/GenerateSlices";
 import "../index.css";
@@ -47,6 +47,10 @@ const EnterDetails = () => {
       });
     }
   }, [updateUserData]);
+  const formRef = useRef();
+  useEffect(() => {
+    document.querySelector("body").appendChild(formRef.current);
+  }, []);
 
   const onChangeData = (e) => {
     setData({
@@ -173,7 +177,20 @@ const EnterDetails = () => {
   };
 
   const onSubmitData = (e) => {
+    // e.preventDefault();
+    console.log(e);
     e.preventDefault();
+    if (valid?.length === 0) {
+      console.log("working");
+      document.querySelector(".add-details").style.display = "none";
+      setData({
+        name: "",
+        regNumber: "",
+        color: "",
+        slotNumber: "",
+        vehicle: "",
+      });
+    }
     if (
       slotData !== null &&
       slotData.slots >= 0 &&
@@ -295,7 +312,9 @@ const EnterDetails = () => {
     });
     dispatch(updateUser({ index: null }));
   };
-  const closeAddDetails = () => {
+  const closeAddDetails = (e) => {
+    console.log(e);
+    e.preventDefault();
     if (valid?.length === 0) {
       console.log("working");
       document.querySelector(".add-details").style.display = "none";
@@ -310,7 +329,10 @@ const EnterDetails = () => {
   };
 
   return (
-    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
+    <div
+      ref={formRef}
+      className="h-fit w-fit z-10 add-details top-1/2 absolute -translate-y-1/2 translate-x-1/2 right-1/2 bg-blue-300 shadow-md rounded-xl"
+    >
       <form
         id="enter-details"
         action=""
@@ -487,8 +509,8 @@ const EnterDetails = () => {
           </div>
           <div>
             <button
-              type="submit"
-              onClick={closeAddDetails}
+              type="button"
+              // onClick={(e) => closeAddDetails(e)}
               className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350 disabled:opacity-25"
             >
               {updateUserData === null ? "Add" : "Update"}
