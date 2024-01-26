@@ -16,7 +16,7 @@ const SideNav = () => {
           onClick={() => setPage("dashboard")}
           className={`${
             page === "dashboard"
-              ? "lg:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 lg:translate-x-4 shadow rounded p-2 md:px-4 md:py-3 "
+              ? "lg:w-60 text-white shadow-md bg-gradient-to-r from-purple-800 to-blue-350 lg:translate-x-4  rounded p-2 md:px-4 md:py-3 "
               : "lg:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
@@ -29,7 +29,7 @@ const SideNav = () => {
           className={`       
           ${
             page === "car-parking"
-              ? "lg:w-60 text-white bg-gradient-to-r from-purple-800 to-blue-350 rounded shadow lg:translate-x-4 p-2 md:px-4 md:py-3"
+              ? "lg:w-60 text-white shadow-md bg-gradient-to-r from-purple-800 to-blue-350 rounded  lg:translate-x-4 p-2 md:px-4 md:py-3"
               : "lg:w-full text-black bg-none"
           }  md:justify-end uppercase flex items-center gap-3`}
         >
