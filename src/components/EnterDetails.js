@@ -198,7 +198,7 @@ const EnterDetails = () => {
         slotNumber: "",
         vehicle: "",
       });
-      document.querySelector(".add-details").style.display = "none";
+      formRef.current.style.display = "none";
     } else if (slotData === null) {
       alert("Generate Slot");
     }
@@ -207,7 +207,7 @@ const EnterDetails = () => {
   const update = (e) => {
     e.preventDefault();
     if (valid?.length === 0) {
-      document.querySelector(".add-details").style.display = "none";
+      formRef.current.style.display = "none";
     } else {
       if (
         validation() &&
@@ -286,7 +286,7 @@ const EnterDetails = () => {
   };
 
   const close = () => {
-    document.querySelector(".add-details").style.display = "none";
+    formRef.current.style.display = "none";
     setData({
       name: "",
       regNumber: "",
@@ -299,7 +299,7 @@ const EnterDetails = () => {
   const closeAddDetails = () => {
     if (valid?.length === 0) {
       console.log("working");
-      document.querySelector(".add-details").style.display = "none";
+      formRef.current.style.display = "none";
       setData({
         name: "",
         regNumber: "",
@@ -309,7 +309,7 @@ const EnterDetails = () => {
       });
     }
   };
-  console.log(formRef);
+  // console.log(formRef);
   return (
     <div
       ref={formRef}
