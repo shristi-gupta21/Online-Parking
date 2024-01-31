@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeUser,
@@ -13,6 +13,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import EnterDetails from "./EnterDetails";
 
 const Slots = ({ slotNumber }) => {
+  const formRef = useRef();
+  const btnRef = useRef();
   const userData = useSelector(UserData);
   const slotNumbersArray = Array.from(
     { length: slotNumber },
@@ -84,6 +86,7 @@ const Slots = ({ slotNumber }) => {
     const btnClickHandler = (event) => {
       setAddClick(false);
       const buttonClass = event.currentTarget.classList[0];
+      // console.log(buttonClass);
       document
         .querySelector(`.${buttonClass}`)
         .removeEventListener("click", btnClickHandler);
@@ -98,7 +101,7 @@ const Slots = ({ slotNumber }) => {
   }
   return (
     <div className="w-full">
-      {addClick && <EnterDetails />}
+      {addClick && <EnterDetails formRef={formRef} btnRef={btnRef} />}
       <h1 className="text-center py-4 font-semibold w-full text-xl md:text-3xl uppercase underline">
         Slots
       </h1>

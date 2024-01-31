@@ -12,8 +12,8 @@ import {
 } from "../features/UserSlices";
 import { v1 } from "uuid";
 
-const EnterDetails = () => {
-  const formRef = useRef();
+const EnterDetails = ({ formRef, btnRef }) => {
+  // const formRef = useRef();
   const updateUserData = useSelector(UpdateUsers);
   const totalSlots = useSelector(TotalSlots);
   const [data, setData] = useState({
@@ -309,7 +309,7 @@ const EnterDetails = () => {
       });
     }
   };
-  // console.log(formRef);
+  console.log(formRef);
   return (
     <div
       ref={formRef}
@@ -493,6 +493,7 @@ const EnterDetails = () => {
             <button
               type="submit"
               onClick={closeAddDetails}
+              ref={btnRef}
               className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350 disabled:opacity-25"
             >
               {updateUserData === null ? "Add" : "Update"}
