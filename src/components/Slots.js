@@ -101,7 +101,7 @@ const Slots = ({ slotNumber }) => {
     }
   }
   return (
-    <div class="w-full">
+    <div className="w-full">
       {addClick && <EnterDetails />}
       <h1 className="text-center py-4 font-semibold w-full text-xl md:text-3xl uppercase underline">
         Slots

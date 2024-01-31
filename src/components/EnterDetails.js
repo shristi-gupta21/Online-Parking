@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, TotalSlots } from "../features/GenerateSlices";
 import "../index.css";
@@ -13,6 +13,7 @@ import {
 import { v1 } from "uuid";
 
 const EnterDetails = () => {
+  const formRef = useRef();
   const updateUserData = useSelector(UpdateUsers);
   const totalSlots = useSelector(TotalSlots);
   const [data, setData] = useState({
@@ -308,9 +309,12 @@ const EnterDetails = () => {
       });
     }
   };
-
+  console.log(formRef);
   return (
-    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
+    <div
+      ref={formRef}
+      className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl"
+    >
       <form
         id="enter-details"
         action=""
