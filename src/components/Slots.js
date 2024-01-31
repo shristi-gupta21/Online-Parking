@@ -92,12 +92,8 @@ const Slots = ({ slotNumber }) => {
     const addDetailsBtn = document.querySelector(".add-details-btn");
     const closeDetailsBtn = document.querySelector(".close-btn");
 
-    if (addDetailsBtn) {
+    if (addDetailsBtn || closeDetailsBtn) {
       addDetailsBtn.addEventListener("click", btnClickHandler);
-    }
-
-    if (closeDetailsBtn) {
-      closeDetailsBtn.addEventListener("click", btnClickHandler);
     }
   }
   return (
