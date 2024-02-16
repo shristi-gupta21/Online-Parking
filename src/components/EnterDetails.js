@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addSlot, SelectedSlot, TotalSlots } from "../features/GenerateSlices";
 import "../index.css";
@@ -12,8 +12,7 @@ import {
 } from "../features/UserSlices";
 import { v1 } from "uuid";
 
-const EnterDetails = ({ formRef, btnRef }) => {
-  // const formRef = useRef();
+const EnterDetails = () => {
   const updateUserData = useSelector(UpdateUsers);
   const totalSlots = useSelector(TotalSlots);
   const [data, setData] = useState({
@@ -198,7 +197,7 @@ const EnterDetails = ({ formRef, btnRef }) => {
         slotNumber: "",
         vehicle: "",
       });
-      formRef.current.style.display = "none";
+      document.querySelector(".add-details").style.display = "none";
     } else if (slotData === null) {
       alert("Generate Slot");
     }
@@ -207,7 +206,7 @@ const EnterDetails = ({ formRef, btnRef }) => {
   const update = (e) => {
     e.preventDefault();
     if (valid?.length === 0) {
-      formRef.current.style.display = "none";
+      document.querySelector(".add-details").style.display = "none";
     } else {
       if (
         validation() &&
@@ -286,7 +285,7 @@ const EnterDetails = ({ formRef, btnRef }) => {
   };
 
   const close = () => {
-    formRef.current.style.display = "none";
+    document.querySelector(".add-details").style.display = "none";
     setData({
       name: "",
       regNumber: "",
@@ -299,7 +298,7 @@ const EnterDetails = ({ formRef, btnRef }) => {
   const closeAddDetails = () => {
     if (valid?.length === 0) {
       console.log("working");
-      formRef.current.style.display = "none";
+      document.querySelector(".add-details").style.display = "none";
       setData({
         name: "",
         regNumber: "",
@@ -309,12 +308,8 @@ const EnterDetails = ({ formRef, btnRef }) => {
       });
     }
   };
-  console.log(formRef);
   return (
-    <div
-      ref={formRef}
-      className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl"
-    >
+    <div className="z-10 add-details top-12 absolute translate-x-1/2 right-1/2 md:translate-x-0 md:right-6 bg-blue-300 shadow-md rounded-xl">
       <form
         id="enter-details"
         action=""
@@ -493,7 +488,6 @@ const EnterDetails = ({ formRef, btnRef }) => {
             <button
               type="submit"
               onClick={closeAddDetails}
-              ref={btnRef}
               className="add-details-btn py-1 px-10 md:text-lg rounded-md text-white uppercase font-semibold bg-gradient-to-r from-purple-800 to-blue-350 disabled:opacity-25"
             >
               {updateUserData === null ? "Add" : "Update"}

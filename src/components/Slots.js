@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeUser,
@@ -13,8 +13,6 @@ import EditIcon from "@mui/icons-material/Edit";
 import EnterDetails from "./EnterDetails";
 
 const Slots = ({ slotNumber }) => {
-  const formRef = useRef();
-  const btnRef = useRef();
   const userData = useSelector(UserData);
   const slotNumbersArray = Array.from(
     { length: slotNumber },
@@ -44,7 +42,7 @@ const Slots = ({ slotNumber }) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
     dispatch(addSlot({ slots: slotsData.slots + 1 }));
-    const modifiedData = data.filter((item, index) => i !== index);
+    const modifiedData = data.filter((_, index) => i !== index);
     setData(modifiedData);
   };
 
@@ -101,7 +99,7 @@ const Slots = ({ slotNumber }) => {
   }
   return (
     <div className="w-full">
-      {addClick && <EnterDetails formRef={formRef} btnRef={btnRef} />}
+      {addClick && <EnterDetails />}
       <h1 className="text-center py-4 font-semibold w-full text-xl md:text-3xl uppercase underline">
         Slots
       </h1>
