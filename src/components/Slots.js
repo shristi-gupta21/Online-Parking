@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   removeUser,
@@ -27,7 +27,6 @@ const Slots = ({ slotNumber }) => {
   const [data, setData] = useState(Array(slotNumber).fill(null));
 
   useEffect(() => {
-    showSearchedUser(searchedData);
     userData.forEach((item) => {
       const index = item.slotNumber - 1;
       if (index >= 0 && index < data.length) {
@@ -36,8 +35,34 @@ const Slots = ({ slotNumber }) => {
         setData(updatedArray);
       }
     });
-  }, [searchedData, updateUserData, userData]);
+  }, [updateUserData, userData, data]);
 
+  const cachedFn = useCallback(() => {
+    const showSearchedUser = (data) => {
+      let d = {};
+      if (data !== "") {
+        const obj = userData.filter(
+          (item) =>
+            item.regNumber.toLowerCase().includes(data) ||
+            item.name.toLowerCase().includes(data) ||
+            item.color.toLowerCase().includes(data) ||
+            item.vehicle.toLowerCase().includes(data)
+        );
+        d = { obj: obj, fetch: true };
+        setSearchObj(d);
+      } else {
+        const obj = userData.filter((item) =>
+          item.regNumber.toLowerCase().includes(data)
+        );
+        const d = { obj: obj, fetch: false };
+        setSearchObj(d);
+      }
+    };
+    showSearchedUser(searchedData);
+  }, [searchedData, userData]);
+  useEffect(() => {
+    cachedFn();
+  }, [cachedFn]);
   const onClickRemoveData = (i) => {
     dispatch(removeUser({ index: i }));
     updateUserData !== null && dispatch(updateUser({ index: null }));
@@ -56,26 +81,6 @@ const Slots = ({ slotNumber }) => {
     dispatch(updateUser({ index: index }));
   };
 
-  const showSearchedUser = (data) => {
-    let d = {};
-    if (data !== "") {
-      const obj = userData.filter(
-        (item) =>
-          item.regNumber.toLowerCase().includes(data) ||
-          item.name.toLowerCase().includes(data) ||
-          item.color.toLowerCase().includes(data) ||
-          item.vehicle.toLowerCase().includes(data)
-      );
-      d = { obj: obj, fetch: true };
-      setSearchObj(d);
-    } else {
-      const obj = userData.filter((item) =>
-        item.regNumber.toLowerCase().includes(data)
-      );
-      const d = { obj: obj, fetch: false };
-      setSearchObj(d);
-    }
-  };
   const onClickAdd = () => {
     setAddClick((prevAddClick) => !prevAddClick);
   };
@@ -84,7 +89,6 @@ const Slots = ({ slotNumber }) => {
     const btnClickHandler = (event) => {
       setAddClick(false);
       const buttonClass = event.currentTarget.classList[0];
-      // console.log(buttonClass);
       document
         .querySelector(`.${buttonClass}`)
         .removeEventListener("click", btnClickHandler);
